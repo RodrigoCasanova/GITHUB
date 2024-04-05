@@ -1,33 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheFutbolKey</title>
-    <!-- Latest compiled and minified CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <!-- Latest compiled JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <style>
-		
-		.texto { 
-            text-align: center;
-        }
-	</style>
-    <style>
-        body {
-          background-color: lightblue;
-        }
-        </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TheFutbolKey</title>
+  <!-- Latest compiled and minified CSS -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <!-- Latest compiled JavaScript -->
+  <script src="js/bootstrap.min.js"></script>
+  <style>
+    .texto {
+      text-align: center;
+    }
+  </style>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 10%;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: rgb(236, 25, 190);
+    }
+
+    body {
+      background-image: url("img/img.jpg");
+    }
+
+    h2.solid {
+      border-style: solid;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      width: 95%;
+      padding: 8px;
+    }
+  </style>
 </head>
+
 <body>
-    <div class=" texto">
-        <h1> TheFutbolKey </h1>
-        <h2>HTML Image</h2>
-        <img src= "img/hola.jpg" alt="Trulli" >
-        
+  <div class=" texto">
+    <img src="img/titulo2.webp">
     <p> </p>
-      </div>
-    
+  </div>
+  <div class="container mt-5">
+    <button class= "centered-button">Iniciar Secion</button>
+  </div>
+  <div class="container mt-5">
+    <button class="centered-button">Registrarse</button>
+  </div>
+  <table>
+    <tr>
+      <th>Tablas de Posiciones</th>
+    </tr>
+    <tr>
+      <th>Tienda</th>
+    </tr>
+    <tr>
+      <th>Ligas de Futbol</th>
+    </tr>
+  </table>
+
 </body>
+
 </html>
