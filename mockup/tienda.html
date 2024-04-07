@@ -12,15 +12,40 @@
 
 <div class="container mt-3">
   <h2>Camiseta de Colo Colo original</h2>
-  <div class="card" style="width:400px">
-    <img class="card-img-top" src="img/coload.webp" alt="Colo Colo" style="width:100%">
-    <div class="card-body">
-      <h4 class="card-title">Camiseta de Colo Colo 2024 con Dorsal a escoger </h4>
-      <a href="#" class="btn btn-primary">Comprar</a>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card" style="width:100%">
+        <img class="card-img-top" src="img/coload.webp" alt="Colo Colo">
+        <div class="card-body">
+           </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card" style="width:100%">
+        <div class="card-body">
+          <h4 class="card-text">Camiseta Hombre Adidas Local Colo Colo, Dorsal a escoger</h4>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Cantidad</span>
+            <input type="number" id="cantidadProducto" class="form-control" value="1" min="1">
+          </div>
+          <a href="#" class="btn btn-primary" id="btnComprar" onclick="agregarAlCarrito()">Comprar</a>
+        </div>
+      </div>
     </div>
   </div>
   <br>
 </div>
+
+<script>
+  function agregarAlCarrito() {
+    var cantidad = document.getElementById('cantidadProducto').value;
+    if (cantidad == 1) {
+      alert('Se agregó 1 producto al carrito');
+    } else {
+      alert('Se agregaron ' + cantidad + ' productos al carrito');
+    }
+  }
+</script>
 
 </body>
 </html>
