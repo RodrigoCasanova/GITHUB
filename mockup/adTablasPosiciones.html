@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Control Administrativo</title>
-    <!-- Enlaces a Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
     <style>
-        /* Estilos para la barra de navegación */
         .navbar {
             background-color: #333;
             overflow: hidden;
@@ -28,12 +26,10 @@
             color: black;
         }
         
-        /* Estilos para el área principal */
         .main {
             padding: 16px;
         }
         
-        /* Estilos para el pie de página */
         .footer {
             background-color: #333;
             color: #f2f2f2;
@@ -48,69 +44,54 @@
 </head>
 <body>
 
-<!-- Barra de navegación -->
 <div class="navbar">
     <a href="#inicio">Inicio</a>
     <a href="tablaposiciones.html">Tablas de Posiciones</a>
     <a href="#ligas">Ligas</a>
     <a href="#usuarios">Usuarios</a>
-    <a href="#tienda">Tienda</a>
+    <a href="adTienda.html">Tienda</a>
 </div>
 <div class="main">
     <h2>Panel de Control Administrativo</h2>
     <p>Agregar equipo a la tabla de posiciones:</p>
 
-    <!-- Formulario para agregar equipo a la tabla de posiciones -->
     <form id="formularioTabla">
-        <!-- Campos para ingresar los datos -->
         <input type="text" id="equipo" placeholder="Equipo" required>
         <input type="number" id="jugados" placeholder="Jugados" required>
-        <!-- Otros campos de la tabla -->
         <button type="submit">Agregar Equipo</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        // Capturar el envío del formulario
         $('#formularioTabla').submit(function(event) {
-            event.preventDefault(); // Evitar que el formulario se envíe por defecto
-    
-            // Obtener los valores del formulario
+            event.preventDefault(); 
             var equipo = $('#equipo').val();
             var jugados = $('#jugados').val();
     
-            // Crear un objeto con los datos del equipo
             var equipoData = {
                 equipo: equipo,
                 jugados: jugados
             };
     
-            // Convertir el objeto a formato JSON y guardarlo en localStorage
             localStorage.setItem('nuevoEquipo', JSON.stringify(equipoData));
     
-            // Redirigir a la página de tablas de posiciones
             window.location.href = 'tablaposiciones.html';
         });
     });
     </script>
 
-<!-- Área principal -->
 <div class="main">
     <h2>Inicio</h2>
     <p>Bienvenido al panel de control administrativo.</p>
 
-    <!-- Formulario para agregar equipo a la tabla de posiciones -->
     <form id="formularioTabla">
-        <!-- Campos para ingresar los datos -->
         <input type="text" id="equipo" placeholder="Equipo">
         <input type="number" id="jugados" placeholder="Jugados">
-        <!-- Otros campos de la tabla -->
         <button type="submit">Agregar Equipo</button>
     </form>
 </div>
 
-<!-- Pie de página -->
 <div class="footer">
     <p>Panel de Control Administrativo - © 2024</p>
 </div>

@@ -40,11 +40,9 @@
   </div>
 
   <script>
-    // Obtener el total de la compra de la URL
     var urlParams = new URLSearchParams(window.location.search);
     var totalCompra = urlParams.get('total');
 
-    // Mostrar el total de la compra en la página
     document.getElementById('totalCompra').textContent = totalCompra;
   </script>
 </body>

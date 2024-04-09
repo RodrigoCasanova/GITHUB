@@ -42,37 +42,36 @@
               <span class="input-group-text">Cantidad</span>
               <input type="number" id="cantidadProducto" class="form-control" value="1" min="1">
             </div>
-            <p>Precio: $60.000</p> <!-- Precio agregado aquí -->
+            <p>Precio: $60.000</p> 
             <a href="#" class="btn btn-primary" id="btnComprar" onclick="agregarAlCarrito()">Comprar</a>
           </div>
         </div>
       </div>
     </div>
     <br>
-    <!-- Columna del carrito de compra -->
+    
     <div class="row">
       <div class="col-md-6">
         <h3>Carrito de compra</h3>
         <ul id="listaCarrito" class="list-group"></ul>
-        <p id="totalCompra"></p> <!-- Mostrar el total de la compra -->
+        <p id="totalCompra"></p> 
       </div>
     </div>
   </div>
 
   <script>
-    var totalCompra = 0; // Variable global para almacenar el total del carrito
-
+    var totalCompra = 0; 
     function agregarAlCarrito() {
       var cantidad = parseInt(document.getElementById('cantidadProducto').value);
-      var precioProducto = 60000; // Precio por unidad
+      var precioProducto = 60000; 
       var totalProducto = cantidad * precioProducto;
 
-      totalCompra += totalProducto; // Agregar el total del producto al total de la compra
+      totalCompra += totalProducto; 
 
-      // Redirigir al usuario a la página del carrito de la compra con el total
+
       window.location.href = 'CarritoDeCompra.html?total=' + totalCompra;
 
-      // Agregar el producto al carrito de compra en la columna
+      
       var listaCarrito = document.getElementById('listaCarrito');
       var producto = document.createElement('li');
       producto.className = 'list-group-item';

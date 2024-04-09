@@ -58,7 +58,7 @@
     <div class="btn-group">
         <a href="inicio.html"><button type="button" class="btn btn-primary">Inicio</button></a>
         <a href="ligas.html"><button type="button" class="btn btn-primary">Ligas</button></a>
-        <a href="tienda.html"><button type="button" class="btn btn-primary">Tienda</button></a>
+        <a href="TiendaOnline.html"><button type="button" class="btn btn-primary">Tienda</button></a>
         <a href="Indice.html"><button type="button" class="btn btn-primary">Cerrar sesion</button></a>
     </div>
     <div class="main">
@@ -275,7 +275,7 @@
                         <td>0</td>
                         <td>0</td>
                     </tr>
-                    <!-- Otras filas omitidas por brevedad -->
+                    
                 </tbody>
             </table>
         </div>
@@ -284,14 +284,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Recuperar el dato del nuevo equipo desde localStorage
             var nuevoEquipo = JSON.parse(localStorage.getItem('nuevoEquipo'));
 
             if (nuevoEquipo) {
-                // Contar el número de filas en la tabla
                 var rowCount = $('#tablaCuerpo tr').length;
 
-                // Construir una nueva fila para la tabla con la posición siguiente
                 var newRow = '<tr>' +
                     '<td>' + (rowCount + 1) + '</td>' +
                     '<td>' + nuevoEquipo.equipo + '</td>' +
@@ -305,10 +302,8 @@
                     '<td>0</td>' +
                     '</tr>';
 
-                // Agregar la nueva fila al cuerpo de la tabla
                 $('#tablaCuerpo').append(newRow);
 
-                // Eliminar el dato del nuevo equipo de localStorage para evitar duplicados
                 localStorage.removeItem('nuevoEquipo');
             }
         });

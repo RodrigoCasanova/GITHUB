@@ -54,7 +54,6 @@
             text-align: center;
         }
 
-        /* Estilos para la animación de compra */
         #animacion-compra {
             position: fixed;
             top: 110px;
@@ -83,7 +82,6 @@
             margin-top: 10px;
         }
 
-        /* Estilo para la imagen de compra */
         #animacion-imagen {
             width: 300px;
             height: 300px;
@@ -104,21 +102,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="inicio.html">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ligas</a>
+                        <a class="nav-link" href="ligas.html">Ligas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Tablas de Posiciones</a>
+                        <a class="nav-link" href="tablaposiciones.html">Tablas de Posiciones</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
-                        <!-- Icono de cerrar sesión -->
+                        <a class="nav-link" href="Indice.html">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                     </li>
                     <li class="nav-item">
                         <a id="carrito-icono" class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de compra -->
+                            <i class="fas fa-shopping-cart"></i> 
                         </a>
                     </li>
                 </ul>
@@ -169,7 +166,6 @@
         </div>
     </div>
 
-    <!-- Contenedor para la animación de compra -->
     <div id="animacion-compra" class="d-none">
         <img id="animacion-imagen" src="" alt="Imagen de compra" class="img-fluid">
         <p id="animacion-precio"></p>
@@ -200,22 +196,17 @@
                     const imagen = this.getAttribute('data-imagen');
                     const precio = this.getAttribute('data-precio');
 
-                    // Mostrar la imagen y precio en la animación de compra
                     animacionImagen.src = imagen;
                     animacionPrecio.textContent = `$${precio}`;
                     animacionCompra.classList.remove('d-none');
 
-                    // Agregar animación (ejemplo: desvanecerse después de 2 segundos)
                     setTimeout(() => {
                         animacionCompra.classList.add('d-none');
                     }, 2000);
                 });
             });
 
-            // Evento para ir a pagar
             pagarBtn.addEventListener('click', function () {
-                // Aquí puedes implementar la lógica para redirigir al usuario a la página de pago
-                // Por ejemplo:
                 window.location.href = 'pagar.html';
             });
         });
