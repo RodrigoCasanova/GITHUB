@@ -57,13 +57,13 @@
         #animacion-compra {
             position: fixed;
             top: 110px;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 10px;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             transition: opacity 0.5s ease;
+            z-index: 9999;
         }
 
         #animacion-compra.d-none {
@@ -76,6 +76,7 @@
             top: 20px;
             right: 20px;
             cursor: pointer;
+            z-index: 9999;
         }
 
         #pagar-btn {
@@ -83,8 +84,35 @@
         }
 
         #animacion-imagen {
+            width: 150px;
+            height: 150px;
+        }
+
+        #carrito-detalle {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            position: fixed;
+            top: 60px;
+            right: 10px;
             width: 300px;
-            height: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 9999;
+        }
+
+        #carrito-detalle ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #carrito-detalle ul li {
+            padding: 5px 0;
+            border-bottom: 1px solid #ced4da;
         }
     </style>
 </head>
@@ -101,15 +129,6 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="inicio.html">Inicio <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ligas.html">Ligas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tablaposiciones.html">Tablas de Posiciones</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Indice.html">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                     </li>
@@ -172,6 +191,12 @@
         <a href="tienda.html"><button id="pagar-btn" class="btn btn-success">Comprar</button></a>
     </div>
 
+    <div id="carrito-detalle">
+        <ul id="carrito-lista">
+            <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
+        </ul>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <span>&copy; 2024 La Mejor Tienda de Camisetas de Fútbol</span>
@@ -188,7 +213,9 @@
             const animacionCompra = document.getElementById('animacion-compra');
             const animacionImagen = document.getElementById('animacion-imagen');
             const animacionPrecio = document.getElementById('animacion-precio');
-            const pagarBtn = document.getElementById('pagar-btn');
+            const carritoIcono = document.getElementById('carrito-icono');
+            const carritoDetalle = document.getElementById('carrito-detalle');
+            const carritoLista = document.getElementById('carrito-lista');
 
             comprarBtns.forEach(btn => {
                 btn.addEventListener('click', function (e) {
@@ -203,11 +230,23 @@
                     setTimeout(() => {
                         animacionCompra.classList.add('d-none');
                     }, 2000);
+
+                    // Añadir elemento al carrito
+                    const itemCarrito = document.createElement('li');
+                    itemCarrito.textContent = `Camiseta: $${precio}`;
+                    carritoLista.appendChild(itemCarrito);
                 });
             });
 
-            pagarBtn.addEventListener('click', function () {
-                window.location.href = 'pagar.html';
+            carritoIcono.addEventListener('click', function () {
+                carritoDetalle.style.display = carritoDetalle.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Opcional: Agregar funcionalidad para eliminar elementos del carrito
+            carritoLista.addEventListener('click', function (e) {
+                if (e.target.tagName === 'LI') {
+                    e.target.remove();
+                }
             });
         });
     </script>
