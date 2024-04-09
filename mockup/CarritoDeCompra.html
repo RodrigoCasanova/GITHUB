@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Carrito de Compra</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .container {
+      margin-top: 50px;
+    }
+
+    .card {
+      margin-bottom: 20px;
+    }
+
+    img.product-img {
+      max-width: 100px;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="mb-4">Resumen de Compra</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Producto</h5>
+            <img src="img/coload.webp" alt="Colo Colo" class="product-img">
+            <p class="fs-4 fw-bold text-primary mt-3">Total de la compra: $<span id="totalCompra"></span></p>
+            <a href="#" class="btn btn-success">Pagar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Obtener el total de la compra de la URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var totalCompra = urlParams.get('total');
+
+    // Mostrar el total de la compra en la página
+    document.getElementById('totalCompra').textContent = totalCompra;
+  </script>
+</body>
+
+</html>

@@ -12,7 +12,6 @@
             text-align: center;
         }
 
-
         table,
         td,
         th {
@@ -23,7 +22,6 @@
         S table {
             border-collapse: collapse;
             width: 50%;
-
         }
 
         th,
@@ -62,12 +60,14 @@
         <a href="ligas.html"><button type="button" class="btn btn-primary">Ligas</button></a>
         <a href="tienda.html"><button type="button" class="btn btn-primary">Tienda</button></a>
         <a href="Indice.html"><button type="button" class="btn btn-primary">Cerrar sesion</button></a>
-      </div>
+    </div>
+    <div class="main">
+        <h2>Tabla de Posiciones - Liga Chilena 2024</h2>
+    </div>
     <table class="center">
-
         <div class="container mt-5">
             <h2 style="color:white; text-align: center;">Tabla de Posiciones - Liga Chilena 2024</h2>
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="tablaPosiciones">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Posición</th>
@@ -82,7 +82,7 @@
                         <th scope="col">Puntos</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tablaCuerpo">
                     <tr>
                         <td>1</td>
                         <td>Audax Italiano</td>
@@ -275,8 +275,44 @@
                         <td>0</td>
                         <td>0</td>
                     </tr>
+                    <!-- Otras filas omitidas por brevedad -->
                 </tbody>
             </table>
+        </div>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Recuperar el dato del nuevo equipo desde localStorage
+            var nuevoEquipo = JSON.parse(localStorage.getItem('nuevoEquipo'));
+
+            if (nuevoEquipo) {
+                // Contar el número de filas en la tabla
+                var rowCount = $('#tablaCuerpo tr').length;
+
+                // Construir una nueva fila para la tabla con la posición siguiente
+                var newRow = '<tr>' +
+                    '<td>' + (rowCount + 1) + '</td>' +
+                    '<td>' + nuevoEquipo.equipo + '</td>' +
+                    '<td>' + nuevoEquipo.jugados + '</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '<td>0</td>' +
+                    '</tr>';
+
+                // Agregar la nueva fila al cuerpo de la tabla
+                $('#tablaCuerpo').append(newRow);
+
+                // Eliminar el dato del nuevo equipo de localStorage para evitar duplicados
+                localStorage.removeItem('nuevoEquipo');
+            }
+        });
+    </script>
 </body>
 
 </html>

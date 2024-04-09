@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mejor Tienda de Camisetas de Fútbol</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 60px;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .jumbotron {
+            background-image: url('https://source.unsplash.com/1600x900/?soccer');
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .jumbotron h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-link:hover {
+            color: #ffffff;
+        }
+
+        .navbar-toggler-icon {
+            color: #ffffff;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Estilos para la animación de compra */
+        #animacion-compra {
+            position: fixed;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease;
+        }
+
+        #animacion-compra.d-none {
+            opacity: 0;
+        }
+
+        #carrito-icono {
+            font-size: 24px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        #pagar-btn {
+            margin-top: 10px;
+        }
+
+        /* Estilo para la imagen de compra */
+        #animacion-imagen {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">La Mejor Tienda de Camisetas de Fútbol</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ligas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tablas de Posiciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
+                        <!-- Icono de cerrar sesión -->
+                    </li>
+                    <li class="nav-item">
+                        <a id="carrito-icono" class="nav-link" href="#">
+                            <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de compra -->
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Bienvenido a la mejor tienda de camisetas de fútbol</h1>
+            <p class="lead">Encuentra la camiseta de tu equipo favorito aquí.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/coload.webp" alt="Camiseta 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta de Colo Colo 2024</h5>
+                        <p class="card-text">$60.000</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/coload.webp" data-precio="60000">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/argentina.jpg" alt="Camiseta 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta de Argentina Messi</h5>
+                        <p class="card-text">$60.000</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/argentina.jpg" data-precio="60000">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/real_madrid.png" alt="Camiseta 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta de Real Madrid Monicius</h5>
+                        <p class="card-text">$60.000</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/real_madrid.png" data-precio="60000">Comprar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para la animación de compra -->
+    <div id="animacion-compra" class="d-none">
+        <img id="animacion-imagen" src="" alt="Imagen de compra" class="img-fluid">
+        <p id="animacion-precio"></p>
+        <a href="tienda.html"><button id="pagar-btn" class="btn btn-success">Comprar</button></a>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <span>&copy; 2024 La Mejor Tienda de Camisetas de Fútbol</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const comprarBtns = document.querySelectorAll('.comprar-btn');
+            const animacionCompra = document.getElementById('animacion-compra');
+            const animacionImagen = document.getElementById('animacion-imagen');
+            const animacionPrecio = document.getElementById('animacion-precio');
+            const pagarBtn = document.getElementById('pagar-btn');
+
+            comprarBtns.forEach(btn => {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const imagen = this.getAttribute('data-imagen');
+                    const precio = this.getAttribute('data-precio');
+
+                    // Mostrar la imagen y precio en la animación de compra
+                    animacionImagen.src = imagen;
+                    animacionPrecio.textContent = `$${precio}`;
+                    animacionCompra.classList.remove('d-none');
+
+                    // Agregar animación (ejemplo: desvanecerse después de 2 segundos)
+                    setTimeout(() => {
+                        animacionCompra.classList.add('d-none');
+                    }, 2000);
+                });
+            });
+
+            // Evento para ir a pagar
+            pagarBtn.addEventListener('click', function () {
+                // Aquí puedes implementar la lógica para redirigir al usuario a la página de pago
+                // Por ejemplo:
+                window.location.href = 'pagar.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

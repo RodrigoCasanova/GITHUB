@@ -15,9 +15,9 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="inicio.html">Inicio</a>
-        <li class="nav-item">
-          <a class="nav-link" href="Indice.html">Cerrar sesion</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Indice.html">Cerrar sesión</a>
         </li>
       </ul>
     </div>
@@ -42,22 +42,42 @@
               <span class="input-group-text">Cantidad</span>
               <input type="number" id="cantidadProducto" class="form-control" value="1" min="1">
             </div>
+            <p>Precio: $60.000</p> <!-- Precio agregado aquí -->
             <a href="#" class="btn btn-primary" id="btnComprar" onclick="agregarAlCarrito()">Comprar</a>
           </div>
         </div>
       </div>
     </div>
     <br>
+    <!-- Columna del carrito de compra -->
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Carrito de compra</h3>
+        <ul id="listaCarrito" class="list-group"></ul>
+        <p id="totalCompra"></p> <!-- Mostrar el total de la compra -->
+      </div>
+    </div>
   </div>
 
   <script>
+    var totalCompra = 0; // Variable global para almacenar el total del carrito
+
     function agregarAlCarrito() {
-      var cantidad = document.getElementById('cantidadProducto').value;
-      if (cantidad == 1) {
-        alert('Se agregó 1 producto al carrito');
-      } else {
-        alert('Se agregaron ' + cantidad + ' productos al carrito');
-      }
+      var cantidad = parseInt(document.getElementById('cantidadProducto').value);
+      var precioProducto = 60000; // Precio por unidad
+      var totalProducto = cantidad * precioProducto;
+
+      totalCompra += totalProducto; // Agregar el total del producto al total de la compra
+
+      // Redirigir al usuario a la página del carrito de la compra con el total
+      window.location.href = 'CarritoDeCompra.html?total=' + totalCompra;
+
+      // Agregar el producto al carrito de compra en la columna
+      var listaCarrito = document.getElementById('listaCarrito');
+      var producto = document.createElement('li');
+      producto.className = 'list-group-item';
+      producto.textContent = 'Camiseta de Colo Colo (' + cantidad + ')';
+      listaCarrito.appendChild(producto);
     }
   </script>
 
