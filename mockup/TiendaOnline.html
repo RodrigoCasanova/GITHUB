@@ -1,255 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Mejor Tienda de Camisetas de Fútbol</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 60px;
-        }
+    <title></title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Variables
+            const baseDeDatos = [
+                {
+                    id: 1,
+                    nombre: 'Camiseta Colo Colo 2024',
+                    precio: 60000,
+                    imagen: 'coload.webp'
+                },
+                {
+                    id: 2,
+                    nombre: 'Camiseta Argentina de Messi',
+                    precio: 80000,
+                    imagen: 'argentina.jpg'
+                },
+                {
+                    id: 3,
+                    nombre: 'Camiseta Real Madrid Monicius',
+                    precio: 80000,
+                    imagen: 'real_madrid.png'
+                },
 
-        .navbar {
-            background-color: #343a40;
-        }
 
-        .navbar-brand,
-        .navbar-nav .nav-link {
-            color: #ffffff;
-        }
+            ];
 
-        .jumbotron {
-            background-image: url('https://source.unsplash.com/1600x900/?soccer');
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-            text-align: center;
-            padding-top: 100px;
-        }
+            let carrito = [];
+            const divisa = 'CLP';
+            const DOMitems = document.querySelector('#items');
+            const DOMcarrito = document.querySelector('#carrito');
+            const DOMtotal = document.querySelector('#total');
+            const DOMbotonVaciar = document.querySelector('#boton-vaciar');
 
-        .jumbotron h1 {
-            font-size: 3.5em;
-            font-weight: bold;
-        }
+            // Funciones
 
-        .navbar-brand:hover,
-        .navbar-nav .nav-link:hover {
-            color: #ffffff;
-        }
+            /**
+            * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
+            */
+            function renderizarProductos() {
+                baseDeDatos.forEach((info) => {
+                    // Estructura
+                    const miNodo = document.createElement('div');
+                    miNodo.classList.add('card', 'col-sm-4');
+                    // Body
+                    const miNodoCardBody = document.createElement('div');
+                    miNodoCardBody.classList.add('card-body');
+                    // Titulo
+                    const miNodoTitle = document.createElement('h5');
+                    miNodoTitle.classList.add('card-title');
+                    miNodoTitle.textContent = info.nombre;
+                    // Imagen
+                    const miNodoImagen = document.createElement('img');
+                    miNodoImagen.classList.add('img-fluid');
+                    miNodoImagen.setAttribute('src', info.imagen);
+                    // Precio
+                    const miNodoPrecio = document.createElement('p');
+                    miNodoPrecio.classList.add('card-text');
+                    miNodoPrecio.textContent = `${info.precio}${divisa}`
+                        ; {
+                    };
+                    // Boton
+                    const miNodoBoton = document.createElement('button');
+                    miNodoBoton.classList.add('btn', 'btn-primary');
+                    miNodoBoton.textContent = '+';
+                    miNodoBoton.setAttribute('marcador', info.id);
+                    miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+                    // Insertamos
+                    miNodoCardBody.appendChild(miNodoImagen);
+                    miNodoCardBody.appendChild(miNodoTitle);
+                    miNodoCardBody.appendChild(miNodoPrecio);
+                    miNodoCardBody.appendChild(miNodoBoton);
+                    miNodo.appendChild(miNodoCardBody);
+                    DOMitems.appendChild(miNodo);
+                });
+            }
 
-        .navbar-toggler-icon {
-            color: #ffffff;
-        }
+            /**
+            * Evento para añadir un producto al carrito de la compra
+            */
+            function anyadirProductoAlCarrito(evento) {
+                // Anyadimos el Nodo a nuestro carrito
+                carrito.push(evento.target.getAttribute('marcador'))
+                // Actualizamos el carrito
+                renderizarCarrito();
 
-        .footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-        }
+            }
 
-        #animacion-compra {
-            position: fixed;
-            top: 110px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease;
-            z-index: 9999;
-        }
+            /**
+            * Dibuja todos los productos guardados en el carrito
+            */
+            function renderizarCarrito() {
+                // Vaciamos todo el html
+                DOMcarrito.textContent = '';
+                // Quitamos los duplicados
+                const carritoSinDuplicados = [...new Set(carrito)];
+                // Generamos los Nodos a partir de carrito
+                carritoSinDuplicados.forEach((item) => {
+                    // Obtenemos el item que necesitamos de la variable base de datos
+                    const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                        // ¿Coincide las id? Solo puede existir un caso
+                        return itemBaseDatos.id === parseInt(item);
+                    });
+                    // Cuenta el número de veces que se repite el producto
+                    const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                        // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                        return itemId === item ? total += 1 : total;
+                    }, 0);
+                    // Creamos el nodo del item del carrito
+                    const miNodo = document.createElement('li');
+                    miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+                    miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre}, 0).toFixed(3); - ${miItem[0].precio}${divisa}`;
+                    // Boton de borrar
+                    const miBoton = document.createElement('button');
+                    miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+                    miBoton.textContent = 'X';
+                    miBoton.style.marginLeft = '1rem';
+                    miBoton.dataset.item = item;
+                    miBoton.addEventListener('click', borrarItemCarrito);
+                    // Mezclamos nodos
+                    miNodo.appendChild(miBoton);
+                    DOMcarrito.appendChild(miNodo);
+                });
+                // Renderizamos el precio total en el HTML
+                DOMtotal.textContent = calcularTotal();
+            }
 
-        #animacion-compra.d-none {
-            opacity: 0;
-        }
+            /**
+            * Evento para borrar un elemento del carrito
+            */
+            function borrarItemCarrito(evento) {
+                // Obtenemos el producto ID que hay en el boton pulsado
+                const id = evento.target.dataset.item;
+                // Borramos todos los productos
+                carrito = carrito.filter((carritoId) => {
+                    return carritoId !== id;
+                });
+                // volvemos a renderizar
+                renderizarCarrito();
+            }
 
-        #carrito-icono {
-            font-size: 24px;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            z-index: 9999;
-        }
+            /**
+             * Calcula el precio total teniendo en cuenta los productos repetidos
+             */
+            function calcularTotal() {
+                // Recorremos el array del carrito
+                return carrito.reduce((total, item) => {
+                    // De cada elemento obtenemos su precio
+                    const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                        return itemBaseDatos.id === parseInt(item);
+                    });
+                    // Los sumamos al total
+                    return total + miItem[0].precio;
+                }, 0).toLocaleString('es-CL', { // 'es-CL' es el código de idioma y región para español de Chile
+                    minimumFractionDigits: 0
+                });
+            }
 
-        #pagar-btn {
-            margin-top: 10px;
-        }
+            /**
+            * Varia el carrito y vuelve a dibujarlo
+            */
+            function vaciarCarrito() {
+                // Limpiamos los productos guardados
+                carrito = [];
+                // Renderizamos los cambios
+                renderizarCarrito();
+            }
 
-        #animacion-imagen {
-            width: 150px;
-            height: 150px;
-        }
+            // Eventos
+            DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
-        #carrito-detalle {
-            max-height: 300px;
-            overflow-y: auto;
-            background-color: #ffffff;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 10px;
-            position: fixed;
-            top: 60px;
-            right: 10px;
-            width: 300px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 9999;
-        }
-
-        #carrito-detalle ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #carrito-detalle ul li {
-            padding: 5px 0;
-            border-bottom: 1px solid #ced4da;
-        }
-    </style>
+            // Inicio
+            renderizarProductos();
+            renderizarCarrito();
+        });
+    </script>
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">La Mejor Tienda de Camisetas de Fútbol</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Indice.html">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="carrito-icono" class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i> 
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Bienvenido a la mejor tienda de camisetas de fútbol</h1>
-            <p class="lead">Encuentra la camiseta de tu equipo favorito aquí.</p>
-        </div>
-    </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/coload.webp" alt="Camiseta 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Colo Colo 2024</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/coload.webp" data-precio="60000">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/argentina.jpg" alt="Camiseta 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Argentina Messi</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/argentina.jpg" data-precio="60000">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/real_madrid.png" alt="Camiseta 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Real Madrid Monicius</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/real_madrid.png" data-precio="60000">Comprar</a>
-                    </div>
-                </div>
-            </div>
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-sm-8 row"></main>
+            <!-- Carrito -->
+            <aside class="col-sm-4">
+                <h2>Carrito</h2>
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group"></ul>
+                <hr>
+                <!-- Precio total -->
+                <p class="text-right">Total: <span id="total"></span> CLP</p>
+                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+            </aside>
         </div>
     </div>
-
-    <div id="animacion-compra" class="d-none">
-        <img id="animacion-imagen" src="" alt="Imagen de compra" class="img-fluid">
-        <p id="animacion-precio"></p>
-        <a href="tienda.html"><button id="pagar-btn" class="btn btn-success">Comprar</button></a>
-    </div>
-
-    <div id="carrito-detalle">
-        <ul id="carrito-lista">
-            <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
-        </ul>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <span>&copy; 2024 La Mejor Tienda de Camisetas de Fútbol</span>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const comprarBtns = document.querySelectorAll('.comprar-btn');
-            const animacionCompra = document.getElementById('animacion-compra');
-            const animacionImagen = document.getElementById('animacion-imagen');
-            const animacionPrecio = document.getElementById('animacion-precio');
-            const carritoIcono = document.getElementById('carrito-icono');
-            const carritoDetalle = document.getElementById('carrito-detalle');
-            const carritoLista = document.getElementById('carrito-lista');
-
-            comprarBtns.forEach(btn => {
-                btn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const imagen = this.getAttribute('data-imagen');
-                    const precio = this.getAttribute('data-precio');
-
-                    animacionImagen.src = imagen;
-                    animacionPrecio.textContent = `$${precio}`;
-                    animacionCompra.classList.remove('d-none');
-
-                    setTimeout(() => {
-                        animacionCompra.classList.add('d-none');
-                    }, 2000);
-
-                    // Añadir elemento al carrito
-                    const itemCarrito = document.createElement('li');
-                    itemCarrito.textContent = `Camiseta: $${precio}`;
-                    carritoLista.appendChild(itemCarrito);
-                });
-            });
-
-            carritoIcono.addEventListener('click', function () {
-                carritoDetalle.style.display = carritoDetalle.style.display === 'block' ? 'none' : 'block';
-            });
-
-            // Opcional: Agregar funcionalidad para eliminar elementos del carrito
-            carritoLista.addEventListener('click', function (e) {
-                if (e.target.tagName === 'LI') {
-                    e.target.remove();
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
