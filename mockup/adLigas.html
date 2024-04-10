@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Camisetas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos CSS personalizados */
+        .banner {
+            background-color: #f8f9fa;
+            padding: 100px 0;
+        }
+
+        .banner h1 {
+            color: #343a40;
+        }
+
+        .card {
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            color: #fff;
+        }
+
+        #carrito-mensaje {
+            display: none;
+        }
+
+        .carrito {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 300px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .carrito-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .carrito-header h5 {
+            margin: 0;
+        }
+
+        .carrito-producto {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .carrito-producto img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .carrito-producto p {
+            margin: 0;
+        }
+
+        .carrito-total {
+            font-weight: bold;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .carrito-botones {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Tienda de Camisetas</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Carrito en el navbar -->
+                        <a class="nav-link" href="#" id="carrito-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-secondary" id="carrito-cantidad">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1 class="display-4">Bienvenido a nuestra tienda de camisetas</h1>
+                    <p class="lead">Encuentra la camiseta perfecta para ti.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="https://via.placeholder.com/500" alt="Camisetas" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Productos -->
+    <div class="container py-5">
+        <h2 class="text-center mb-4">Nuestras Camisetas</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Producto 1 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta 1</h5>
+                        <p class="card-text">$20.00</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta 1" data-precio="20.00">Añadir al Carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 2 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta 2</h5>
+                        <p class="card-text">$25.00</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta 2" data-precio="25.00">Añadir al Carrito</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Producto 3 -->
+            <div class="col">
+                <div class="card h-100">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Camiseta 3</h5>
+                        <p class="card-text">$30.00</p>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta 3" data-precio="30.00">Añadir al Carrito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carrito de Compra -->
+    <div class="carrito" id="carrito">
+        <div class="carrito-header">
+            <h5>Carrito de Compras</h5>
+            <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        <div class="carrito-productos" id="carrito-productos">
+            <!-- Los productos del carrito se añadirán aquí dinámicamente -->
+        </div>
+        <div class="carrito-total" id="carrito-total">
+            Total: $0.00
+        </div>
+        <div class="carrito-botones">
+            <button class="btn btn-danger" id="vaciar-carrito">Vaciar Carrito</button>
+            <button class="btn btn-success mt-2" id="pagar">Pagar</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript y Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-TMgvr/HCW72hA0n0TiCHdjB9th+oHlQTLBp3VdXE7ZKTN0HHNFA7SGD5EPZn4cvN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-gc7b1ET+5FqKsKI8JR/dyNspN6/0VC4amNpOw3P+9K6KAB1rR2RPiPzL2evCwcCQ"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carritoLink = document.getElementById('carrito-link');
+            const carrito = document.getElementById('carrito');
+            const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+            const pagarBtn = document.getElementById('pagar');
+
+            // Función para agregar productos al carrito
+            function agregarProductoAlCarrito(nombre, precio) {
+                const productoExistente = document.querySelector(`[data-nombre="${nombre}"]`);
+                if (productoExistente) {
+                    const cantidadElemento = productoExistente.querySelector('.cantidad');
+                    let cantidad = parseInt(cantidadElemento.innerText);
+                    cantidad++;
+                    cantidadElemento.innerText = cantidad;
+                } else {
+                    const productoHTML = `
+                        <div class="carrito-producto" data-nombre="${nombre}">
+                            <img src="https://via.placeholder.com/50" alt="Producto">
+                            <p>${nombre}</p>
+                            <p class="precio">$${precio.toFixed(2)}</p>
+                            <p class="cantidad">1</p>
+                            <button class="btn btn-sm btn-danger eliminar">Eliminar</button>
+                        </div>
+                    `;
+                    document.getElementById('carrito-productos').insertAdjacentHTML('beforeend', productoHTML);
+                }
+                // Actualizar el total y el contador del carrito
+                actualizarTotal();
+                actualizarCantidadCarrito();
+            }
+
+            // Resto del código JavaScript...
+
+            // Resto del código JavaScript...
+
+        });
+    </script>
+</body>
+
+</html>

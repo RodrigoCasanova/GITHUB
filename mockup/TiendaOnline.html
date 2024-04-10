@@ -158,7 +158,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Camiseta de Colo Colo 2024</h5>
                         <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/coload.webp" data-precio="60000">Comprar</a>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta de Colo Colo 2024" data-precio="60000">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Camiseta de Argentina Messi</h5>
                         <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/argentina.jpg" data-precio="60000">Comprar</a>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta de Argentina Messi" data-precio="60000">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Camiseta de Real Madrid Monicius</h5>
                         <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/real_madrid.png" data-precio="60000">Comprar</a>
+                        <a href="#" class="btn btn-primary comprar-btn" data-nombre="Camiseta de Real Madrid Monicius" data-precio="60000">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -191,10 +191,12 @@
         <a href="tienda.html"><button id="pagar-btn" class="btn btn-success">Comprar</button></a>
     </div>
 
+    <!-- Detalle del carrito -->
     <div id="carrito-detalle">
         <ul id="carrito-lista">
             <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
         </ul>
+        <p>Total: <span id="total-carrito">$0</span></p>
     </div>
 
     <footer class="footer">
@@ -216,12 +218,15 @@
             const carritoIcono = document.getElementById('carrito-icono');
             const carritoDetalle = document.getElementById('carrito-detalle');
             const carritoLista = document.getElementById('carrito-lista');
+            const totalCarrito = document.getElementById('total-carrito');
+
+            let total = 0;
 
             comprarBtns.forEach(btn => {
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const imagen = this.getAttribute('data-imagen');
-                    const precio = this.getAttribute('data-precio');
+                    const nombre = this.getAttribute('data-nombre');
+                    const precio = parseInt(this.getAttribute('data-precio'));
 
                     animacionImagen.src = imagen;
                     animacionPrecio.textContent = `$${precio}`;
@@ -233,8 +238,12 @@
 
                     // Añadir elemento al carrito
                     const itemCarrito = document.createElement('li');
-                    itemCarrito.textContent = `Camiseta: $${precio}`;
+                    itemCarrito.textContent = `${nombre}: $${precio}`;
                     carritoLista.appendChild(itemCarrito);
+
+                    // Actualizar el total del carrito
+                    total += precio;
+                    totalCarrito.textContent = `$${total}`;
                 });
             });
 
@@ -245,6 +254,9 @@
             // Opcional: Agregar funcionalidad para eliminar elementos del carrito
             carritoLista.addEventListener('click', function (e) {
                 if (e.target.tagName === 'LI') {
+                    const precio = parseInt(e.target.textContent.split('$')[1]);
+                    total -= precio;
+                    totalCarrito.textContent = `$${total}`;
                     e.target.remove();
                 }
             });
