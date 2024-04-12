@@ -1,255 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Mejor Tienda de Camisetas de Fútbol</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
-            padding-top: 60px;
-        }
-
-        .navbar {
-            background-color: #343a40;
-        }
-
-        .navbar-brand,
-        .navbar-nav .nav-link {
-            color: #ffffff;
-        }
-
-        .jumbotron {
-            background-image: url('https://source.unsplash.com/1600x900/?soccer');
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            color: #ffffff;
-            text-align: center;
-            padding-top: 100px;
-        }
-
-        .jumbotron h1 {
-            font-size: 3.5em;
-            font-weight: bold;
-        }
-
-        .navbar-brand:hover,
-        .navbar-nav .nav-link:hover {
-            color: #ffffff;
-        }
-
-        .navbar-toggler-icon {
-            color: #ffffff;
-        }
-
-        .footer {
-            background-color: #343a40;
-            color: #ffffff;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        #animacion-compra {
-            position: fixed;
-            top: 110px;
-            right: 10px;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.5s ease;
-            z-index: 9999;
-        }
-
-        #animacion-compra.d-none {
-            opacity: 0;
-        }
-
-        #carrito-icono {
-            font-size: 24px;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            cursor: pointer;
-            z-index: 9999;
-        }
-
-        #pagar-btn {
-            margin-top: 10px;
-        }
-
-        #animacion-imagen {
-            width: 150px;
-            height: 150px;
-        }
-
-        #carrito-detalle {
-            max-height: 300px;
-            overflow-y: auto;
-            background-color: #ffffff;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 10px;
-            position: fixed;
-            top: 60px;
-            right: 10px;
-            width: 300px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            display: none;
-            z-index: 9999;
-        }
-
-        #carrito-detalle ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #carrito-detalle ul li {
-            padding: 5px 0;
-            border-bottom: 1px solid #ced4da;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="estilo.css">
+    <script src="app.js" async></script>
+    <title>Tienda de Camisetas de Futbol | </title>
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">La Mejor Tienda de Camisetas de Fútbol</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="Indice.html">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="carrito-icono" class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i> 
-                        </a>
-                    </li>
-                </ul>
+    <header>
+        <h1>Tienda Camiseta de Futbol</h1>
+    </header>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+            <div class="item">
+                <span class="titulo-item">Camiseta Colo Colo 2024</span>
+                <img src="img/coload.webp" alt="" class="img-item">
+                <span class="precio-item">$60.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Universidad de Chiste</span>  
+                <img src="img/udechiste.jpg" alt="" class="img-item">
+                <span class="precio-item">$1</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta Argentina Messi</span>
+                <img src="img/argentina.jpg" alt="" class="img-item">
+                <span class="precio-item">$60.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Real Madrid Monicius</span>
+                <img src="img/real_madrid.png" alt="" class="img-item">
+                <span class="precio-item">$80.000</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Manchester City</span>
+                <img src="img/manchester.jpg" alt="" class="img-item">
+                <span class="precio-item">$79.990</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Arsenal Gabriel Jesus</span>
+                <img src="img/arsenal.jpg" alt="" class="img-item">
+                <span class="precio-item">$79.990</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Barcelona</span>
+                <img src="img/barca1.jpg" alt="" class="img-item">
+                <span class="precio-item">$79.990</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Inter Barella</span>
+                <img src="img/inter.jpg" alt="" class="img-item">
+                <span class="precio-item">$79.990</span>
+                <button class="boton-item">Agregar al Carrito</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Camiseta de Juventus</span>
+                <img src="img/juve.jpg" alt="" class="img-item">
+                <span class="precio-item">$79.990</span>
+                <button class="boton-item">Agregar al Carrito</button>
             </div>
         </div>
-    </nav>
+        <!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
+            </div>
 
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1 class="display-3">Bienvenido a la mejor tienda de camisetas de fútbol</h1>
-            <p class="lead">Encuentra la camiseta de tu equipo favorito aquí.</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/coload.webp" alt="Camiseta 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Colo Colo 2024</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/coload.webp" data-precio="60000">Comprar</a>
+            <div class="carrito-items">
+                <!-- 
+                <div class="carrito-item">
+                    <img src="img/boxengasse.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Box Engasse</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="1" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$15.000,00</span>
                     </div>
+                   <span class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </span>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/argentina.jpg" alt="Camiseta 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Argentina Messi</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/argentina.jpg" data-precio="60000">Comprar</a>
+                <div class="carrito-item">
+                    <img src="img/skinglam.png" width="80px" alt="">
+                    <div class="carrito-item-detalles">
+                        <span class="carrito-item-titulo">Skin Glam</span>
+                        <div class="selector-cantidad">
+                            <i class="fa-solid fa-minus restar-cantidad"></i>
+                            <input type="text" value="3" class="carrito-item-cantidad" disabled>
+                            <i class="fa-solid fa-plus sumar-cantidad"></i>
+                        </div>
+                        <span class="carrito-item-precio">$18.000,00</span>
                     </div>
+                   <button class="btn-eliminar">
+                        <i class="fa-solid fa-trash"></i>
+                   </button>
                 </div>
+                 -->
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <img class="card-img-top" src="img/real_madrid.png" alt="Camiseta 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Camiseta de Real Madrid Monicius</h5>
-                        <p class="card-text">$60.000</p>
-                        <a href="#" class="btn btn-primary comprar-btn" data-imagen="img/real_madrid.png" data-precio="60000">Comprar</a>
-                    </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        $120.000,00
+                    </span>
                 </div>
+                <a href="pago.html"><button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button></a>
             </div>
         </div>
-    </div>
-
-    <div id="animacion-compra" class="d-none">
-        <img id="animacion-imagen" src="" alt="Imagen de compra" class="img-fluid">
-        <p id="animacion-precio"></p>
-        <a href="tienda.html"><button id="pagar-btn" class="btn btn-success">Comprar</button></a>
-    </div>
-
-    <div id="carrito-detalle">
-        <ul id="carrito-lista">
-            <!-- Los elementos del carrito se añadirán aquí dinámicamente -->
-        </ul>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-            <span>&copy; 2024 La Mejor Tienda de Camisetas de Fútbol</span>
-        </div>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const comprarBtns = document.querySelectorAll('.comprar-btn');
-            const animacionCompra = document.getElementById('animacion-compra');
-            const animacionImagen = document.getElementById('animacion-imagen');
-            const animacionPrecio = document.getElementById('animacion-precio');
-            const carritoIcono = document.getElementById('carrito-icono');
-            const carritoDetalle = document.getElementById('carrito-detalle');
-            const carritoLista = document.getElementById('carrito-lista');
-
-            comprarBtns.forEach(btn => {
-                btn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const imagen = this.getAttribute('data-imagen');
-                    const precio = this.getAttribute('data-precio');
-
-                    animacionImagen.src = imagen;
-                    animacionPrecio.textContent = `$${precio}`;
-                    animacionCompra.classList.remove('d-none');
-
-                    setTimeout(() => {
-                        animacionCompra.classList.add('d-none');
-                    }, 2000);
-
-                    // Añadir elemento al carrito
-                    const itemCarrito = document.createElement('li');
-                    itemCarrito.textContent = `Camiseta: $${precio}`;
-                    carritoLista.appendChild(itemCarrito);
-                });
-            });
-
-            carritoIcono.addEventListener('click', function () {
-                carritoDetalle.style.display = carritoDetalle.style.display === 'block' ? 'none' : 'block';
-            });
-
-            // Opcional: Agregar funcionalidad para eliminar elementos del carrito
-            carritoLista.addEventListener('click', function (e) {
-                if (e.target.tagName === 'LI') {
-                    e.target.remove();
-                }
-            });
-        });
-    </script>
+    </section>
 </body>
 
 </html>
