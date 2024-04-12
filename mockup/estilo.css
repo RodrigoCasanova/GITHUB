@@ -4,11 +4,18 @@
     padding:0;
     font-family: 'Open Sans';
 }
-header{
+header {
     background: url(img/hometop.jpg);
     background-size: cover;
-    background-position:center;
+    background-position: center;
     height: 300px;
+    width: 100%; /* Asegura que el ancho del header sea igual al ancho de la ventana */
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 200px; /* Cambia la altura del header en pantallas más pequeñas si es necesario */
+    }
 }
 header h1{
     text-align: center;
@@ -16,6 +23,21 @@ header h1{
     /* background-color: #000; */
     color: #fff;
     padding: 30px 0;
+}
+.container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3); /* Color de fondo con transparencia */
+    border-radius: 10px;
+    text-align: center;
+}
+
+h1 {
+    color: #fff; /* Color del texto */
+    background-color: #007bff; /* Color de fondo del título */
+    padding: 10px 0; /* Espaciado interno del título */
+    border-radius: 5px; /* Borde redondeado */
 }
 .contenedor{
     max-width: 1200px;

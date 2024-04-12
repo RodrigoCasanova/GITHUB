@@ -8,7 +8,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
   <!-- CSS personalizado -->
   <style>
-    body {
+   body {
       background-image: url('https://source.unsplash.com/1600x900/?travel');
       background-size: cover;
       color: #212529;
@@ -28,7 +28,10 @@
 
     h1 {
       text-align: center;
-      color: #03DAC6;
+      color: #000000;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 10px 20px; 
+      border-radius: 10px; 
     }
 
     .status {
@@ -46,24 +49,43 @@
       border-color: #02C2B8;
     }
 
-    /* Estilos para los diferentes estados de los pedidos */
+
     .status.entregado {
-      color: #28a745; /* Verde */
+      color: #28a745; 
     }
 
     .status.en_camino {
-      color: #ffc107; /* Amarillo */
+      color: #ffc107; 
     }
 
     .status.cancelado {
-      color: #dc3545; /* Rojo */
+      color: #dc3545; 
     }
+
   </style>
 </head>
 <body>
   <div class="container mt-5">
     <h1 class="mb-4">Administrar Pedidos</h1>
     <div class="row">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="adUsuarios.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="adTienda.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="adVentas.html">Ventas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="TiendaOnline.html">Tienda Online</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
       <div class="col-lg-10 mx-auto">
         <div class="card">
           <div class="card-body">
@@ -83,8 +105,8 @@
                   <tr data-id="1">
                     <td>1</td>
                     <td>Usuario 1</td>
-                    <td>Producto A, Producto B</td>
-                    <td>123 Calle Principal, Ciudad</td>
+                    <td>Camiseta Colo Colo 2024, Camiseta Argentina Messi</td>
+                    <td>Concepcion, Paicavi 3280</td>
                     <td><span class="status entregado">Entregado</span></td>
                     <td>
                       <button class="btn btn-sm btn-custom edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="1">Editar</button>
@@ -94,9 +116,20 @@
                   <tr data-id="2">
                     <td>2</td>
                     <td>Usuario 2</td>
-                    <td>Producto C, Producto D</td>
-                    <td>456 Calle Secundaria, Ciudad</td>
+                    <td>Camiseta Universidad de Chiste</td>
+                    <td>456 Calle Alamo, Antofagasta</td>
                     <td><span class="status cancelado">Cancelado</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-custom edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="2">Editar</button>
+                      <button class="btn btn-sm btn-danger delete-btn" data-id="2">Eliminar</button>
+                    </td>
+                  </tr>
+                  <tr data-id="3">
+                    <td>3</td>
+                    <td>Usuario 3</td>
+                    <td>Camiseta de Barcelona</td>
+                    <td>26 Calle Brasil, Linares</td>
+                    <td><span class="status en_camino">en_camino</span></td>
                     <td>
                       <button class="btn btn-sm btn-custom edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="2">Editar</button>
                       <button class="btn btn-sm btn-danger delete-btn" data-id="2">Eliminar</button>

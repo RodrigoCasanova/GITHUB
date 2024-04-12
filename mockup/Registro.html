@@ -9,23 +9,19 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2; 
+      background-color: #000; 
+      color: #fff;
     }
 
     .container {
       width: 300px;
       margin: 100px auto;
-      background-color: #fff; 
+      background-color: rgba(255, 255, 255, 0.1); 
       padding: 20px;
       border-radius: 5px;
-      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); 
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.1); 
     }
-    bodys {
-        background-image: url("img/img.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: 100% 100%;
-      }
+
     h2 {
       text-align: center;
     }
@@ -33,6 +29,7 @@
     label {
       display: block;
       margin-bottom: 5px;
+      color: #fff;
     }
 
     input[type="text"],
@@ -44,27 +41,35 @@
       border: 1px solid #ccc;
       border-radius: 3px;
       box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
     }
 
-    input[type="submit"] {
+    input[type="submit"],
+    .btn {
       width: 100%;
-      background-color: #4caf50; 
+      background-color: #007bff; 
       color: white;
       padding: 10px 0;
       border: none;
       border-radius: 3px;
       cursor: pointer;
+      margin-bottom: 10px;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
 
-    input[type="submit"]:hover {
-      background-color: #45a049; 
+    input[type="submit"]:hover,
+    .btn:hover {
+      background-color: #0056b3; 
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Registro de Usuario</h2>
-    <form action="TiendaOnline.html" method="POST">
+    <form action="InicioSesion.html" method="POST">
       <label for="nombre">Nombre:</label>
       <input type="text" id="nombre" name="nombre" required>
 
@@ -78,8 +83,8 @@
       <input type="password" id="contrasena" name="contrasena" required>
 
       <input type="submit" value="Registrarse">
+      <a href="Inicio.html" class="btn">Volver</a>
     </form>
   </div>
 </body>
 </html>
-  
