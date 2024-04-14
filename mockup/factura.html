@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="adUsuarios.html">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="adTienda.html">Tienda</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active" href="adPedidos.html">Pedidos</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active" href="adVentas.html">Ventas</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link active" href="TiendaOnline.html">Tienda Online</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+        <h2>Factura</h2>
+        <form id="facturaForm">
+            <div class="form-group">
+                <label for="idCliente">Número Id:</label>
+                <input type="text" class="form-control" id="idCliente" placeholder="Id del Cliente">
+            </div>
+            <div class="form-group">
+                <label for="nombreCliente">Nombre Cliente:</label>
+                <input type="text" class="form-control" id="nombreCliente" placeholder="Nombre del Cliente">
+            </div>
+            <div class="form-group">
+                <label for="direccionCliente">Dirección:</label>
+                <input type="text" class="form-control" id="direccionCliente" placeholder="Dirección">
+            </div>
+            <div class="form-group">
+                <label for="productos">Productos:</label>
+                <textarea class="form-control" id="productos" placeholder="Productos"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="cargarDatos()">Cargar Datos</button>
+            <button type="button" class="btn btn-success float-right" onclick="generarFactura()">Generar Factura y Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        function cargarDatos() {
+         
+            var pedidoId = "1";
+            var usuario = "Usuario 1";
+            var productos = "Camiseta Colo Colo 2024, Camiseta Argentina Messi";
+            var direccion = "Concepcion, Paicavi 3280";
+
+          
+            document.getElementById("idCliente").value = pedidoId;
+            document.getElementById("nombreCliente").value = usuario;
+            document.getElementById("productos").value = productos;
+            document.getElementById("direccionCliente").value = direccion;
+        }
+
+        function generarFactura() {
+     
+            var idCliente = document.getElementById("idCliente").value;
+            var nombreCliente = document.getElementById("nombreCliente").value;
+            var direccionCliente = document.getElementById("direccionCliente").value;
+            var productos = document.getElementById("productos").value;
+
+    
+            var factura = "Factura\n\n";
+            factura += "Número Id: " + idCliente + "\n";
+            factura += "Nombre Cliente: " + nombreCliente + "\n";
+            factura += "Dirección: " + direccionCliente + "\n";
+            factura += "Productos: " + productos;
+
+          
+            var ventanaFactura = window.open("", "_blank");
+            ventanaFactura.document.write("<pre>" + factura + "</pre>");
+        }
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

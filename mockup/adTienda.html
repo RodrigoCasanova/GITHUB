@@ -158,7 +158,6 @@
             </div>
         </div>
         <div class="contenedor-items" id="contenedorItems">
-            <!-- Las camisetas existentes -->
             <div class="item">
                 <span class="titulo-item">Camiseta Colo Colo 2024</span>
                 <img src="img/coload.webp" alt="" class="img-item">
@@ -234,7 +233,6 @@
     </div>
 </body>
 
-<!-- Bootstrap JS Bundle (Popper.js + Bootstrap JS) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function mostrarFormulario() {
@@ -247,13 +245,11 @@
     }
 
     function agregarCamiseta() {
-        // Obtener los datos del formulario
         var nombre = document.getElementById('nombre').value;
         var precio = document.getElementById('precio').value;
         var imagen = document.getElementById('imagen').files[0];
         var imagenURL = URL.createObjectURL(imagen);
 
-        // Crear el HTML para la nueva camiseta
         var nuevaCamisetaHTML = `
                 <div class="item">
                     <span class="titulo-item">${nombre}</span>
@@ -263,17 +259,13 @@
                 </div>
             `;
 
-        // Agregar la nueva camiseta al contenedor de items
         document.getElementById('contenedorItems').innerHTML = nuevaCamisetaHTML + document.getElementById('contenedorItems').innerHTML;
 
-        // Limpiar el formulario
         document.getElementById('formularioCamiseta').reset();
 
-        // Ocultar el formulario después de agregar la camiseta
         var formulario = document.getElementById("formularioContainer");
         formulario.style.display = "none";
     }
-    // Datos de las camisetas
     var camisetas = [
         { nombre: "Camiseta Colo Colo 2024", precio: "$60.000", imagen: "img/coload.webp" },
         { nombre: "Camiseta de Universidad de Chiste", precio: "$1", imagen: "img/udechiste.jpg" },
@@ -284,10 +276,8 @@
         { nombre: "Camiseta de Barcelona", precio: "$79.990", imagen: "img/barca1.jpg" },
         { nombre: "Camiseta de Inter Barella", precio: "$79.990", imagen: "img/inter.jpg" },
         { nombre: "Camiseta de Juventus", precio: "$79.990", imagen: "img/juve.jpg" }
-        // Agrega el resto de las camisetas aquí
     ];
 
-    // Función para mostrar el formulario de edición
     function mostrarFormularioEdicion(index) {
         var camiseta = camisetas[index];
         document.getElementById("editNombre").value = camiseta.nombre;
@@ -299,27 +289,26 @@
     function eliminarCamisetaDesdeFormulario() {
     var index = document.getElementById("editIndex").value;
     camisetas.splice(index, 1);
-    mostrarCamisetas(); // Actualiza la visualización de las camisetas
-    cancelarEdicion(); // Oculta el formulario de edición
+    mostrarCamisetas(); 
+    cancelarEdicion(); 
 }
 
 function guardarEdicion() {
     var index = document.getElementById("editIndex").value;
     camisetas[index].nombre = document.getElementById("editNombre").value;
     camisetas[index].precio = document.getElementById("editPrecio").value;
-    mostrarCamisetas(); // Actualiza la visualización de las camisetas
-    cancelarEdicion(); // Oculta el formulario de edición
+    mostrarCamisetas();
+    cancelarEdicion(); 
 }
 
-    // Función para cancelar la edición
+ 
     function cancelarEdicion() {
         document.getElementById("formularioEditar").style.display = "none";
     }
 
-    // Función para mostrar las camisetas
     function mostrarCamisetas() {
         var contenedorItems = document.getElementById("contenedorItems");
-        contenedorItems.innerHTML = ""; // Limpiar el contenedor antes de mostrar las camisetas
+        contenedorItems.innerHTML = ""; 
 
         camisetas.forEach(function (camiseta, index) {
             var itemHTML = `
@@ -334,7 +323,6 @@ function guardarEdicion() {
         });
     }
 
-    // Mostrar las camisetas cuando la página se carga
     window.onload = function () {
         mostrarCamisetas();
     };

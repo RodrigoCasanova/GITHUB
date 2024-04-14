@@ -121,7 +121,6 @@ h1 {
 .carrito .carrito-item{
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     position: relative;
     border-bottom: 1px solid #666;
     padding: 20px;
@@ -216,7 +215,6 @@ h1 {
     scale: 1.05;
 }
 
-/* SECCION RESPONSIVE */
 @media screen and (max-width: 850px) {
     .contenedor {
       display: block;
@@ -228,4 +226,4 @@ h1 {
         width: 100%;
     }
   }
-
+ 

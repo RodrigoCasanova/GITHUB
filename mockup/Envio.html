@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direccion de Envio</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: calc(100% - 22px); 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: calc(100% - 22px); 
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: vertical;
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .alerta {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .boton {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        .boton:hover {
+            background-color: #004080;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulario de Envío de Producto</h2>
+        <form action="#" method="POST" id="formularioEnvio">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" required>
+            </div>
+            <div class="form-group">
+                <label for="region">Región:</label>
+                <select id="region" name="region" required onchange="cargarCiudades()">
+                    <option value="">Selecciona una región</option>
+                    <option value="Arica y Parinacota">Arica y Parinacota</option>
+                    <option value="Tarapacá">Tarapacá</option>
+                    <option value="Antofagasta">Antofagasta</option>
+                    <option value="Atacama">Atacama</option>
+                    <option value="Coquimbo">Coquimbo</option>
+                    <option value="Valparaíso">Valparaíso</option>
+                    <option value="Metropolitana de Santiago">Metropolitana de Santiago</option>
+                    <option value="Libertador General Bernardo O'Higgins">Libertador General Bernardo O'Higgins</option>
+                    <option value="Maule">Maule</option>
+                    <option value="Ñuble">Ñuble</option>
+                    <option value="Biobío">Biobío</option>
+                    <option value="La Araucanía">La Araucanía</option>
+                    <option value="Los Ríos">Los Ríos</option>
+                    <option value="Los Lagos">Los Lagos</option>
+                    <option value="Aysén del General Carlos Ibáñez del Campo">Aysén del General Carlos Ibáñez del Campo</option>
+                    <option value="Magallanes y de la Antártica Chilena">Magallanes y de la Antártica Chilena</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <select id="ciudad" name="ciudad" required>
+                    <option value="">Selecciona una ciudad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <textarea id="direccion" name="direccion" required></textarea>
+            </div>
+            <input type="submit" value="Comprobar Envío" id="comprobarEnvio">
+        </form>
+    </div>
+    <script>
+        const ciudadesPorRegion = {
+            "Arica y Parinacota": ["Arica", "Putre"],
+            "Tarapacá": ["Iquique", "Alto Hospicio"],
+            "Antofagasta": ["Antofagasta", "Calama", "Tocopilla"],
+            "Atacama": ["Copiapó", "Vallenar", "Chañaral"],
+            "Coquimbo": ["La Serena", "Coquimbo", "Ovalle"],
+            "Valparaíso": ["Valparaíso", "Viña del Mar", "Quilpué"],
+            "Metropolitana de Santiago": ["Santiago", "Maipú", "Puente Alto"],
+            "Libertador General Bernardo O'Higgins": ["Rancagua", "Rengo", "San Fernando"],
+            "Maule": ["Talca", "Curicó", "Linares"],
+            "Ñuble": ["Chillán", "Chillán Viejo", "San Carlos"],
+            "Biobío": ["Concepción", "Talcahuano", "Chillán"],
+            "La Araucanía": ["Temuco", "Angol", "Victoria"],
+            "Los Ríos": ["Valdivia", "La Unión", "Río Bueno"],
+            "Los Lagos": ["Puerto Montt", "Osorno", "Puerto Varas"],
+            "Aysén del General Carlos Ibáñez del Campo": ["Coyhaique", "Puerto Aysén", "Chile Chico"],
+            "Magallanes y de la Antártica Chilena": ["Punta Arenas", "Puerto Natales", "Porvenir"]
+        };
+
+        function cargarCiudades() {
+            const regionSeleccionada = document.getElementById("region").value;
+            const ciudadDropdown = document.getElementById("ciudad");
+            ciudadDropdown.innerHTML = '<option value="">Selecciona una ciudad</option>';
+            const ciudades = ciudadesPorRegion[regionSeleccionada];
+            if (ciudades) {
+                ciudades.forEach(ciudad => {
+                    const opcion = document.createElement("option");
+                    opcion.text = ciudad;
+                    opcion.value = ciudad;
+                    ciudadDropdown.add(opcion);
+                });
+            }
+        }
+
+        function mostrarAlerta(region, ciudad, direccion) {
+            var alertaExistente = document.getElementById('alerta');
+            if (alertaExistente) {
+                alertaExistente.remove();
+            }
+            var alerta = document.createElement('div');
+            alerta.id = 'alerta';
+            alerta.classList.add('alerta');
+            alerta.innerHTML = `
+                <p>Tu pedido será enviado a la región de ${region}, ciudad de ${ciudad}, a la dirección: ${direccion}. El pedido estaria llegando en 5 días.</p>
+                <button class="boton" onclick="irAPagar()">Ir a Pagar</button>
+            `;
+            document.body.appendChild(alerta);
+        }
+
+        document.getElementById('formularioEnvio').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            var nombre = document.getElementById('nombre').value;
+            var email = document.getElementById('email').value;
+            var telefono = document.getElementById('telefono').value;
+            var region = document.getElementById('region').value;
+            var ciudad = document.getElementById('ciudad').value;
+            var direccion = document.getElementById('direccion').value;
+
+            if (nombre && email && telefono && region && ciudad && direccion) {
+                mostrarAlerta(region, ciudad, direccion);
+            } else {
+                alert('Por favor, completa todos los campos del formulario.');
+            }
+        });
+
+
+        function irAPagar() {
+            window.location.href = 'pago.html'; 
+        }
+    </script>
+</body>
+</html>

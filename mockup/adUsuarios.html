@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - Tienda de Poleras</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <!-- CSS personalizado -->
     <style>
         body {
             background-color: #121212;
@@ -51,18 +49,21 @@
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <div class="container-fluid">
                   <ul class="navbar-nav">
-                    <li class="nav-item">
-                      <a class="nav-link" href="adTienda.html">Tienda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="adPedidos.html">Pedidos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="adVentas.html">Ventas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="TiendaOnline.html">Tienda Online</a>
-                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="adTienda.html">Tienda</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="adPedidos.html">Pedidos</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="adVentas.html">Ventas</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="TiendaOnline.html">Tienda Online</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active" href="factura.html">Generador de factura</a>
+                      </li>
                   </ul>
                 </div>
               </nav>
@@ -257,16 +258,12 @@
     </div>
 
 
-    <!-- Bootstrap Bundle JS (Bootstrap JS + Popper.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
-    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- JavaScript personalizado -->
     <script>
         $(document).ready(function () {
-            // Agregar usuario
             $('#addUserForm').submit(function (e) {
                 e.preventDefault();
                 var nombre = $('#nombre').val();
@@ -277,37 +274,32 @@
                 $('#addUserForm').trigger("reset");
             });
 
-            // Eliminar usuario
             $('#userTable').on('click', '.deleteBtn', function () {
                 $(this).closest('tr').remove();
-                // Actualizar números de fila después de eliminar
                 $('#userTable tbody tr').each(function (index) {
                     $(this).find('td:first').text(index + 1);
                 });
             });
-         // Editar usuario
          $('#userTable').on('click', '.editBtn', function () {
                 var row = $(this).closest('tr');
                 var email = row.find('td:eq(2)').text();
 
                 $('#editNombre').val(row.find('td:eq(1)').text());
                 $('#editEmail').val(email);
-                $('#editUserForm').show().data('user-email', email); // Usar el email como identificador
+                $('#editUserForm').show().data('user-email', email); 
             });
 
-            // Guardar cambios al editar usuario
             $('#editForm').submit(function (e) {
                 e.preventDefault();
-                var userEmail = $('#editUserForm').data('user-email'); // Obtener el email del usuario
+                var userEmail = $('#editUserForm').data('user-email'); 
                 var nombre = $('#editNombre').val();
                 var email = $('#editEmail').val();
 
-                // Buscar la fila correspondiente al usuario editado por su email
                 $('#userTable tbody tr').each(function () {
                     if ($(this).find('td:eq(2)').text() === userEmail) {
                         $(this).find('td:eq(1)').text(nombre);
                         $(this).find('td:eq(2)').text(email);
-                        return false; // Salir del bucle each
+                        return false; 
                     }
                 });
 
