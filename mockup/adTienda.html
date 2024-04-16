@@ -78,10 +78,16 @@
 
         .form-group {
             margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .form-group label {
-            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input[type="file"] {
+            margin-top: 5px;
         }
 
         .form-group input[type="text"],
@@ -115,7 +121,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body>
@@ -227,7 +233,8 @@
             </div>
             <input type="hidden" id="editIndex" name="editIndex">
             <button type="button" onclick="guardarEdicion()" class="btn-submit">Guardar Cambios</button>
-            <button type="button" onclick="eliminarCamisetaDesdeFormulario()" class="btn-submit eliminar">Eliminar</button>
+            <button type="button" onclick="eliminarCamisetaDesdeFormulario()"
+                class="btn-submit eliminar">Eliminar</button>
             <button type="button" onclick="cancelarEdicion()" class="btn-submit">Cancelar</button>
         </form>
     </div>
@@ -237,7 +244,7 @@
 <script>
     function mostrarFormulario() {
         var formulario = document.getElementById("formularioContainer");
-        if (formulario.style.display === "none") {
+        if (formulario.style.display === "" || formulario.style.display === "none") {
             formulario.style.display = "block";
         } else {
             formulario.style.display = "none";
@@ -250,14 +257,21 @@
         var imagen = document.getElementById('imagen').files[0];
         var imagenURL = URL.createObjectURL(imagen);
 
+        var nuevaCamiseta = {
+            nombre: nombre,
+            precio: precio,
+            imagen: imagenURL
+        };
+        camisetas.push(nuevaCamiseta);
         var nuevaCamisetaHTML = `
-                <div class="item">
-                    <span class="titulo-item">${nombre}</span>
-                    <img src="${imagenURL}" alt="" class="img-item">
-                    <span class="precio-item">${precio}</span>
-                    <button class="boton-item">Agregar al Carrito</button>
-                </div>
-            `;
+        <div class="item">
+            <span class="titulo-item">${nombre}</span>
+            <img src="${imagenURL}" alt="" class="img-item">
+            <span class="precio-item">${precio}</span>
+            <button class="boton-item" onclick="mostrarFormularioEdicion(${camisetas.length - 1})">Editar</button>
+        </div>
+    `;
+
 
         document.getElementById('contenedorItems').innerHTML = nuevaCamisetaHTML + document.getElementById('contenedorItems').innerHTML;
 
@@ -287,28 +301,28 @@
     }
 
     function eliminarCamisetaDesdeFormulario() {
-    var index = document.getElementById("editIndex").value;
-    camisetas.splice(index, 1);
-    mostrarCamisetas(); 
-    cancelarEdicion(); 
-}
+        var index = document.getElementById("editIndex").value;
+        camisetas.splice(index, 1);
+        mostrarCamisetas();
+        cancelarEdicion();
+    }
 
-function guardarEdicion() {
-    var index = document.getElementById("editIndex").value;
-    camisetas[index].nombre = document.getElementById("editNombre").value;
-    camisetas[index].precio = document.getElementById("editPrecio").value;
-    mostrarCamisetas();
-    cancelarEdicion(); 
-}
+    function guardarEdicion() {
+        var index = document.getElementById("editIndex").value;
+        camisetas[index].nombre = document.getElementById("editNombre").value;
+        camisetas[index].precio = document.getElementById("editPrecio").value;
+        mostrarCamisetas();
+        cancelarEdicion();
+    }
 
- 
+
     function cancelarEdicion() {
         document.getElementById("formularioEditar").style.display = "none";
     }
 
     function mostrarCamisetas() {
         var contenedorItems = document.getElementById("contenedorItems");
-        contenedorItems.innerHTML = ""; 
+        contenedorItems.innerHTML = "";
 
         camisetas.forEach(function (camiseta, index) {
             var itemHTML = `
