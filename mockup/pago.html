@@ -146,14 +146,14 @@
 
     <script>
         function validateForm() {
-            var cardHolderName = document.getElementById('card-holder-name').value;
-            var cardNumber = document.getElementById('card-number').value;
-            var expiryDate = document.getElementById('expiry-date').value;
-            var cvc = document.getElementById('cvc').value;
-            var address = document.getElementById('address').value;
+            let cardHolderName = document.getElementById('card-holder-name').value;
+            let cardNumber = document.getElementById('card-number').value;
+            let expiryDate = document.getElementById('expiry-date').value;
+            let cvc = document.getElementById('cvc').value;
+            let address = document.getElementById('address').value;
 
           
-            var dateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+            let dateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
 
             if (cardHolderName === "" || cardNumber === "" || expiryDate === "" || cvc === "" || address === "") {
                 document.getElementById('error-message').innerHTML = "Por favor, llene todos los campos.";

@@ -56,10 +56,10 @@
     <script>
         function cargarDatos() {
          
-            var pedidoId = "1";
-            var usuario = "Usuario 1";
-            var productos = "Camiseta Colo Colo 2024, Camiseta Argentina Messi";
-            var direccion = "Concepcion, Paicavi 3280";
+            let pedidoId = "1";
+            let usuario = "Usuario 1";
+            let productos = "Camiseta Colo Colo 2024, Camiseta Argentina Messi";
+            let direccion = "Concepcion, Paicavi 3280";
 
           
             document.getElementById("idCliente").value = pedidoId;
@@ -70,20 +70,20 @@
 
         function generarFactura() {
      
-            var idCliente = document.getElementById("idCliente").value;
-            var nombreCliente = document.getElementById("nombreCliente").value;
-            var direccionCliente = document.getElementById("direccionCliente").value;
-            var productos = document.getElementById("productos").value;
+            let idCliente = document.getElementById("idCliente").value;
+            let nombreCliente = document.getElementById("nombreCliente").value;
+            let direccionCliente = document.getElementById("direccionCliente").value;
+            let productos = document.getElementById("productos").value;
 
     
-            var factura = "Factura\n\n";
+            let factura = "Factura\n\n";
             factura += "Número Id: " + idCliente + "\n";
             factura += "Nombre Cliente: " + nombreCliente + "\n";
             factura += "Dirección: " + direccionCliente + "\n";
             factura += "Productos: " + productos;
 
           
-            var ventanaFactura = window.open("", "_blank");
+            let ventanaFactura = window.open("", "_blank");
             ventanaFactura.document.write("<pre>" + factura + "</pre>");
         }
     </script>

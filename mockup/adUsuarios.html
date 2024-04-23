@@ -266,10 +266,10 @@
         $(document).ready(function () {
             $('#addUserForm').submit(function (e) {
                 e.preventDefault();
-                var nombre = $('#nombre').val();
-                var email = $('#email').val();
-                var rowCount = $('#userTable tr').length;
-                var newRow = '<tr><td>' + rowCount + '</td><td>' + nombre + '</td><td>' + email + '</td><td><button class="btn btn-sm btn-primary editBtn" data-user-id="' + rowCount + '">Editar</button><button class="btn btn-sm btn-danger deleteBtn">Eliminar</button></td></tr>';
+                let nombre = $('#nombre').val();
+                let email = $('#email').val();
+                let rowCount = $('#userTable tr').length;
+                let newRow = '<tr><td>' + rowCount + '</td><td>' + nombre + '</td><td>' + email + '</td><td><button class="btn btn-sm btn-primary editBtn" data-user-id="' + rowCount + '">Editar</button><button class="btn btn-sm btn-danger deleteBtn">Eliminar</button></td></tr>';
                 $('#userTable tbody').append(newRow);
                 $('#addUserForm').trigger("reset");
             });
@@ -281,8 +281,8 @@
                 });
             });
          $('#userTable').on('click', '.editBtn', function () {
-                var row = $(this).closest('tr');
-                var email = row.find('td:eq(2)').text();
+                let row = $(this).closest('tr');
+                let email = row.find('td:eq(2)').text();
 
                 $('#editNombre').val(row.find('td:eq(1)').text());
                 $('#editEmail').val(email);
@@ -291,9 +291,9 @@
 
             $('#editForm').submit(function (e) {
                 e.preventDefault();
-                var userEmail = $('#editUserForm').data('user-email'); 
-                var nombre = $('#editNombre').val();
-                var email = $('#editEmail').val();
+                let userEmail = $('#editUserForm').data('user-email'); 
+                let nombre = $('#editNombre').val();
+                let email = $('#editEmail').val();
 
                 $('#userTable tbody tr').each(function () {
                     if ($(this).find('td:eq(2)').text() === userEmail) {

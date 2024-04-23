@@ -213,15 +213,15 @@
 
   <script>
     $(document).ready(function() {
-      var currentOrderId;
+      let currentOrderId;
 
       $('.edit-btn').click(function() {
         currentOrderId = $(this).data('id');
-        var $row = $('tr[data-id="' + currentOrderId + '"]');
-        var username = $row.find('td:nth-child(2)').text();
-        var products = $row.find('td:nth-child(3)').text();
-        var address = $row.find('td:nth-child(4)').text();
-        var status = $row.find('.status').text();
+        let $row = $('tr[data-id="' + currentOrderId + '"]');
+        let username = $row.find('td:nth-child(2)').text();
+        let products = $row.find('td:nth-child(3)').text();
+        let address = $row.find('td:nth-child(4)').text();
+        let status = $row.find('.status').text();
 
         $('#orderId').val(currentOrderId);
         $('#username').val(username);
@@ -233,13 +233,13 @@
       });
 
       $('.save-btn').click(function() {
-        var orderId = $('#orderId').val();
-        var username = $('#username').val();
-        var products = $('#products').val();
-        var address = $('#address').val();
-        var status = $('#status').val();
+        let orderId = $('#orderId').val();
+        let username = $('#username').val();
+        let products = $('#products').val();
+        let address = $('#address').val();
+        let status = $('#status').val();
 
-        var $row = $('tr[data-id="' + orderId + '"]');
+        let $row = $('tr[data-id="' + orderId + '"]');
         $row.find('td:nth-child(2)').text(username);
         $row.find('td:nth-child(3)').text(products);
         $row.find('td:nth-child(4)').text(address);
@@ -256,7 +256,7 @@
       });
 
       $('.confirm-delete-btn').click(function() {
-        var orderId = currentOrderId;
+        let orderId = currentOrderId;
 
         $('tr[data-id="' + orderId + '"]').remove();
 

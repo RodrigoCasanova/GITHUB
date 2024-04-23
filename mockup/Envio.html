@@ -169,11 +169,11 @@
         }
 
         function mostrarAlerta(region, ciudad, direccion) {
-            var alertaExistente = document.getElementById('alerta');
+            let alertaExistente = document.getElementById('alerta');
             if (alertaExistente) {
                 alertaExistente.remove();
             }
-            var alerta = document.createElement('div');
+            let alerta = document.createElement('div');
             alerta.id = 'alerta';
             alerta.classList.add('alerta');
             alerta.innerHTML = `
@@ -186,12 +186,12 @@
         document.getElementById('formularioEnvio').addEventListener('submit', function(event) {
             event.preventDefault(); 
 
-            var nombre = document.getElementById('nombre').value;
-            var email = document.getElementById('email').value;
-            var telefono = document.getElementById('telefono').value;
-            var region = document.getElementById('region').value;
-            var ciudad = document.getElementById('ciudad').value;
-            var direccion = document.getElementById('direccion').value;
+            let nombre = document.getElementById('nombre').value;
+            let email = document.getElementById('email').value;
+            let telefono = document.getElementById('telefono').value;
+            let region = document.getElementById('region').value;
+            let ciudad = document.getElementById('ciudad').value;
+            let direccion = document.getElementById('direccion').value;
 
             if (nombre && email && telefono && region && ciudad && direccion) {
                 mostrarAlerta(region, ciudad, direccion);
