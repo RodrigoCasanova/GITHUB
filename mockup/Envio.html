@@ -182,6 +182,16 @@
             `;
             document.body.appendChild(alerta);
         }
+        function validarTelefono(input) {
+            var regex = /^\d+$/; // Expresión regular que permite solo números
+            if (!regex.test(input.value)) {
+                input.value = input.value.replace(/[^\d]/g, ''); // Limpiar el campo si se ingresa algo que no es número
+            }
+        }
+
+        document.getElementById('telefono').addEventListener('input', function() {
+            validarTelefono(this); // Llamar a la función de validación cuando se ingrese algo en el campo de teléfono
+        });
 
         document.getElementById('formularioEnvio').addEventListener('submit', function(event) {
             event.preventDefault(); 
