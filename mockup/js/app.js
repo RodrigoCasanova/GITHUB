@@ -166,3 +166,4 @@ function actualizarTotalCarrito(){
 
     document.getElementsByClassName('carrito-precio-total')[0].innerText = '$'+total.toLocaleString("es") + ",00";
 }
+

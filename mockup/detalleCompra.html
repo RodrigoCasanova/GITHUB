@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Compra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Font Awesome para los iconos -->
+
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .product-image {
+            width: 50px;
+            height: 50px;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .total-clp {
+            font-weight: bold;
+        }
+        .delete-icon {
+            color: #ff0000;
+            cursor: pointer;
+        }
+        #discountCode {
+            width: 200px;
+            padding: 8px;
+            font-size: 1rem;
+        }
+        #applyDiscountBtn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalle de Compra</h1>
+        <p><strong>Codigo de Pedido:</strong> #123456</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario (CLP)</th>
+                    <th>Total (CLP)</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="img/coload.webp" alt="Producto 1" class="product-image"></td>
+                    <td>Camiseta de Colo Colo 2023 XL</td>
+                    <td class="quantity-control">
+                        <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                        <input type="text" value="2" class="quantity-input" onchange="updateTotalPrice(this)" readonly />
+                        <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                    </td>
+                    <td>$60.000</td>
+                    <td class="total-clp">$120.000</td>
+                    <td><i class="fas fa-trash delete-icon" onclick="deleteRow(this)"></i></td>
+                </tr>
+                <tr>
+                    <td><img src="img/coload.webp" alt="Producto 1" class="product-image"></td>
+                    <td>Camiseta de Colo Colo 2023 S</td>
+                    <td class="quantity-control">
+                        <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                        <input type="text" value="1" class="quantity-input" onchange="updateTotalPrice(this)" readonly />
+                        <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                    </td>
+                    <td>$60.000</td>
+                    <td class="total-clp">$60.000</td>
+                    <td><i class="fas fa-trash delete-icon" onclick="deleteRow(this)"></i></td>
+                </tr>
+                <tr>
+                    <td><img src="img/argentina.jpg" alt="Producto 2" class="product-image"></td>
+                    <td>Producto 2</td>
+                    <td class="quantity-control">
+                        <button class="quantity-btn" onclick="decrementQuantity(this)">-</button>
+                        <input type="text" value="1" class="quantity-input" onchange="updateTotalPrice(this)" readonly />
+                        <button class="quantity-btn" onclick="incrementQuantity(this)">+</button>
+                    </td>
+                    <td>$60.000</td>
+                    <td class="total-clp">$60.000</td>
+                    <td><i class="fas fa-trash delete-icon" onclick="deleteRow(this)"></i></td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="text-align: right;"><strong>Codigo de Descuento:</strong></td>
+                    <td colspan="2">
+                        <input type="text" id="discountCode" placeholder="Ingrese código">
+                        <button id="applyDiscountBtn" onclick="applyDiscount()">Aplicar Descuento</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align: right;"><strong>Total:</strong></td>
+                    <td id="totalPrice">$240.000</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="action-buttons">
+            <a href="TiendaOnline.html"><button class="action-button">Volver a la Tienda</button></a>
+            <a href="Envio.html"><button class="action-button">Comprobar Envío</button></a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script> <!-- Font Awesome JS para los iconos -->
+
+    <script>
+        // Función para aumentar la cantidad
+        function incrementQuantity(input) {
+            let quantityInput = input.parentNode.querySelector('.quantity-input');
+            let currentValue = parseInt(quantityInput.value);
+            quantityInput.value = currentValue + 1;
+            updateTotalPrice(input);
+        }
+
+        // Función para disminuir la cantidad
+        function decrementQuantity(input) {
+            let quantityInput = input.parentNode.querySelector('.quantity-input');
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+                updateTotalPrice(input);
+            }
+        }
+
+        // Función para actualizar el precio total
+        function updateTotalPrice(input) {
+            let row = input.parentNode.parentNode;
+            let quantity = parseInt(row.querySelector('.quantity-input').value);
+            let price = parseFloat(row.querySelectorAll('td')[3].textContent.replace('$', '').replace('.', '').replace(',', '.'));
+            let totalPrice = quantity * price;
+            row.querySelector('.total-clp').textContent = '$' + totalPrice.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            updateTotalCartPrice();
+        }
+
+        // Función para actualizar el precio total del carrito
+        function updateTotalCartPrice() {
+            let totalPrice = 0;
+            let rows = document.querySelectorAll('tbody tr');
+            rows.forEach(function(row) {
+                let price = parseFloat(row.querySelector('.total-clp').textContent.replace('$', '').replace('.', '').replace(',', '.'));
+                totalPrice += price;
+            });
+            document.getElementById('totalPrice').textContent = '$' + totalPrice.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+        }
+
+        // Función para eliminar una fila
+        function deleteRow(icon) {
+            let row = icon.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateTotalCartPrice();
+        }
+
+        // Función para aplicar el descuento
+        function applyDiscount() {
+            let discountCode = document.getElementById('discountCode').value;
+            // Validar el código de descuento
+            if (discountCode === 'ELMASGRANDE') {
+                let totalPrice = parseFloat(document.getElementById('totalPrice').textContent.replace('$', '').replace('.', '').replace(',', '.'));
+                let discountedPrice = totalPrice * 0.7; // Aplicar descuento del 30%
+                document.getElementById('totalPrice').textContent = '$' + discountedPrice.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+            } else {
+                alert('Código de descuento inválido');
+            }
+        }
+    </script>
+</body>
+</html>
