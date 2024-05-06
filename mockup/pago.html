@@ -151,10 +151,17 @@
             let expiryDate = document.getElementById('expiry-date').value;
             let cvc = document.getElementById('cvc').value;
             let address = document.getElementById('address').value;
-
-          
+    
             let dateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
-
+            let cardNumberRegex = /^\d+$/; // Expresión regular para permitir solo dígitos
+    
+            // Validación para verificar si el número de tarjeta contiene letras
+            if (!cardNumber.match(cardNumberRegex)) {
+                document.getElementById('error-message').innerHTML = "El número de tarjeta solo puede contener dígitos.";
+                document.getElementById('success-message').innerHTML = "";
+                return false;
+            }
+    
             if (cardHolderName === "" || cardNumber === "" || expiryDate === "" || cvc === "" || address === "") {
                 document.getElementById('error-message').innerHTML = "Por favor, llene todos los campos.";
                 document.getElementById('success-message').innerHTML = ""; 
@@ -170,6 +177,7 @@
             }
         }
     </script>
+    
 </body>
 
 </html>
