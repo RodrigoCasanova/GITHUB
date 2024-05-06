@@ -9,12 +9,14 @@
 header {
     position: relative;
     background: url(imgcss/hometop.jpg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     height: 300px;
     width: 100%;
     /* Asegura que el ancho del header sea igual al ancho de la ventana */
 }
+
 
 @media (max-width: 768px) {
     header {
@@ -261,32 +263,7 @@ h1 {
         width: 100%;
     }
 }
-
-.navbar-nav .nav-item .dropdown-menu {
-    position: relative;
-}
-
-#locationData {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.navbar-nav .nav-item .dropdown-menu::before {
-    position: absolute;
-    top: -10px;
-    right: 10px;
-    content: '';
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 6px 6px 6px;
-    border-color: transparent transparent rgba(0, 0, 0, 0.5) transparent;
-}
+  
 
 #locationData {
     position: absolute;

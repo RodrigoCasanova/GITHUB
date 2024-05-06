@@ -254,9 +254,16 @@
     function agregarCamiseta() {
         let nombre = document.getElementById('nombre').value;
         let precio = document.getElementById('precio').value;
+    
+        // Verificar si el nombre y el precio están presentes
+        if (nombre.trim() === '' || precio.trim() === '') {
+            alert('Por favor ingresa tanto el nombre como el precio de la camiseta.');
+            return; // Salir de la función si falta alguno de los campos
+        }
+    
         let imagen = document.getElementById('imagen').files[0];
         let imagenURL = URL.createObjectURL(imagen);
-
+    
         let nuevaCamiseta = {
             nombre: nombre,
             precio: precio,
@@ -270,8 +277,11 @@
             <span class="precio-item">${precio}</span>
             <button class="boton-item" onclick="mostrarFormularioEdicion(${camisetas.length - 1})">Editar</button>
         </div>
-    `;
-
+        `;
+        // Aquí probablemente tengas algún elemento donde quieras agregar el HTML generado.
+        // Puedes usar innerHTML para agregarlo al final del contenido existente:
+        // document.getElementById('container').innerHTML += nuevaCamisetaHTML;
+    
 
         document.getElementById('contenedorItems').innerHTML = nuevaCamisetaHTML + document.getElementById('contenedorItems').innerHTML;
 
