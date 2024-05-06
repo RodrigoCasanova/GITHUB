@@ -230,7 +230,7 @@
         validarEmail(this);
     });
         function validarTelefono(input) {
-            var regex = /^\d+$/; // Expresión regular que permite solo números
+            let regex = /^\d+$/; // Expresión regular que permite solo números
             if (!regex.test(input.value)) {
                 input.value = input.value.replace(/[^\d]/g, ''); // Limpiar el campo si se ingresa algo que no es número
             }
