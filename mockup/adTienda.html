@@ -133,6 +133,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" onclick="mostrarFormulario()">Agregar Camiseta</a>
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Inicio.html">Cerrar Sesion</a>
@@ -149,7 +150,7 @@
                 <form id="formularioCamiseta">
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
+                        <input type="text" id="nombre" name="nombre" pattern="[A-Za-z]+" title="Solo se permiten letras" required>
                     </div>
                     <div class="form-group">
                         <label for="imagen">Seleccionar imagen:</label>
@@ -157,7 +158,7 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="text" id="precio" name="precio" placeholder="$79.990" required>
+                        <input type="number" id="precio" name="precio" min="0" placeholder="$79.990" required>
                     </div>
                     <button type="button" onclick="agregarCamiseta()" class="btn-submit">Agregar Camiseta</button>
                 </form>
@@ -225,11 +226,11 @@
         <form id="formularioEdicion">
             <div class="form-group">
                 <label for="editNombre">Nombre:</label>
-                <input type="text" id="editNombre" name="editNombre" required>
+                <input type="text" id="editNombre" name="editNombre" pattern="[A-Za-z]+" title="Solo se permiten letras" required>
             </div>
             <div class="form-group">
                 <label for="editPrecio">Precio:</label>
-                <input type="text" id="editPrecio" name="editPrecio" required>
+                <input type="number" id="editPrecio" name="editPrecio" min="0" required>
             </div>
             <input type="hidden" id="editIndex" name="editIndex">
             <button type="button" onclick="guardarEdicion()" class="btn-submit">Guardar Cambios</button>
@@ -254,39 +255,24 @@
     function agregarCamiseta() {
         let nombre = document.getElementById('nombre').value;
         let precio = document.getElementById('precio').value;
-    
+
         // Verificar si el nombre y el precio están presentes
         if (nombre.trim() === '' || precio.trim() === '') {
             alert('Por favor ingresa tanto el nombre como el precio de la camiseta.');
             return; // Salir de la función si falta alguno de los campos
         }
-    
+
         let imagen = document.getElementById('imagen').files[0];
         let imagenURL = URL.createObjectURL(imagen);
-    
+
         let nuevaCamiseta = {
             nombre: nombre,
             precio: precio,
             imagen: imagenURL
         };
         camisetas.push(nuevaCamiseta);
-        let nuevaCamisetaHTML = `
-        <div class="item">
-            <span class="titulo-item">${nombre}</span>
-            <img src="${imagenURL}" alt="" class="img-item">
-            <span class="precio-item">${precio}</span>
-            <button class="boton-item" onclick="mostrarFormularioEdicion(${camisetas.length - 1})">Editar</button>
-        </div>
-        `;
-        // Aquí probablemente tengas algún elemento donde quieras agregar el HTML generado.
-        // Puedes usar innerHTML para agregarlo al final del contenido existente:
-        // document.getElementById('container').innerHTML += nuevaCamisetaHTML;
-    
-
-        document.getElementById('contenedorItems').innerHTML = nuevaCamisetaHTML + document.getElementById('contenedorItems').innerHTML;
-
+        mostrarCamisetas();
         document.getElementById('formularioCamiseta').reset();
-
         let formulario = document.getElementById("formularioContainer");
         formulario.style.display = "none";
     }
@@ -305,7 +291,7 @@
     function mostrarFormularioEdicion(index) {
         let camiseta = camisetas[index];
         document.getElementById("editNombre").value = camiseta.nombre;
-        document.getElementById("editPrecio").value = camiseta.precio;
+        document.getElementById("editPrecio").value = camiseta.precio.replace('$', ''); // Remover el símbolo de dólar
         document.getElementById("editIndex").value = index;
         document.getElementById("formularioEditar").style.display = "block";
     }
@@ -320,11 +306,10 @@
     function guardarEdicion() {
         let index = document.getElementById("editIndex").value;
         camisetas[index].nombre = document.getElementById("editNombre").value;
-        camisetas[index].precio = document.getElementById("editPrecio").value;
+        camisetas[index].precio = '$' + document.getElementById("editPrecio").value; // Agregar el símbolo de dólar
         mostrarCamisetas();
         cancelarEdicion();
     }
-
 
     function cancelarEdicion() {
         document.getElementById("formularioEditar").style.display = "none";
