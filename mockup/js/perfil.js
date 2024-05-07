@@ -67,8 +67,4 @@ const data = {
     }
   };
 
-  // Inicializar el gráfico
-  let myChart = new Chart(
-    document.getElementById('ventasChart'),
-    config
-  );
+ 

@@ -253,8 +253,8 @@ function validateForm() {
     }
 }
 function validateKeyPress(event) {
-    var keyCode = event.keyCode || event.which;
-    var isValidKey = (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 32;
+    let keyCode = event.keyCode || event.which;
+    let isValidKey = (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || keyCode === 32;
     if (!isValidKey) {
         event.preventDefault();
     }
