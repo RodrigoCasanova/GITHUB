@@ -321,3 +321,4 @@ document.getElementById('formularioEnvio').addEventListener('submit', function (
 function irAPagar() {
     window.location.href = 'pago.html';
 }
+
