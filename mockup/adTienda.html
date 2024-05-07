@@ -115,6 +115,9 @@
             color: #fff;
             cursor: pointer;
         }
+        .error-message {
+            color: red;
+        }
     </style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -151,14 +154,17 @@
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
                         <input type="text" id="nombre" name="nombre" pattern="[A-Za-z]+" title="Solo se permiten letras" required>
+                        <span id="nombre-error" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="imagen">Seleccionar imagen:</label>
                         <input type="file" id="imagen" name="imagen" accept="image/*" required>
+                        <span id="imagen-error" class="error-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
                         <input type="number" id="precio" name="precio" min="0" placeholder="$79.990" required>
+                        <span id="precio-error" class="error-message"></span>
                     </div>
                     <button type="button" onclick="agregarCamiseta()" class="btn-submit">Agregar Camiseta</button>
                 </form>
@@ -230,8 +236,10 @@
             </div>
             <div class="form-group">
                 <label for="editPrecio">Precio:</label>
-                <input type="number" id="editPrecio" name="editPrecio" min="0" required>
+                <input type="text" id="editPrecio" name="editPrecio" pattern="[0-9]+" title="Ingrese solo números" required>
+                <span id="editPrecio-error" class="error-message"></span>
             </div>
+            
             <input type="hidden" id="editIndex" name="editIndex">
             <button type="button" onclick="guardarEdicion()" class="btn-submit">Guardar Cambios</button>
             <button type="button" onclick="eliminarCamisetaDesdeFormulario()"

@@ -11,15 +11,34 @@ function agregarCamiseta() {
     let nombre = document.getElementById('nombre').value;
     let precio = document.getElementById('precio').value;
 
-    // Verificar si el nombre y el precio están presentes
-    if (nombre.trim() === '' || precio.trim() === '') {
-        alert('Por favor ingresa tanto el nombre como el precio de la camiseta.');
-        return; // Salir de la función si falta alguno de los campos
+    // Validar nombre
+    if (nombre.trim() === '') {
+        document.getElementById('nombre-error').innerText = 'Por favor, ingresa un nombre válido.';
+        return;
+    } else {
+        document.getElementById('nombre-error').innerText = '';
     }
 
-    let imagen = document.getElementById('imagen').files[0];
-    let imagenURL = URL.createObjectURL(imagen);
+    // Validar imagen
+    let imagenInput = document.getElementById('imagen');
+    let imagen = imagenInput.files[0];
+    if (!imagen) {
+        document.getElementById('imagen-error').innerText = 'Por favor, selecciona una imagen.';
+        return;
+    } else {
+        document.getElementById('imagen-error').innerText = '';
+    }
 
+    // Validar precio
+    if (precio.trim() === '' || isNaN(precio)) {
+        document.getElementById('precio-error').innerText = 'Por favor, ingresa un precio válido.';
+        return;
+    } else {
+        document.getElementById('precio-error').innerText = '';
+    }
+
+    // Si todos los campos son válidos, continuar con el proceso de agregar la camiseta
+    let imagenURL = URL.createObjectURL(imagen);
     let nuevaCamiseta = {
         nombre: nombre,
         precio: precio,
@@ -60,8 +79,21 @@ function eliminarCamisetaDesdeFormulario() {
 
 function guardarEdicion() {
     let index = document.getElementById("editIndex").value;
-    camisetas[index].nombre = document.getElementById("editNombre").value;
-    camisetas[index].precio = '$' + document.getElementById("editPrecio").value; // Agregar el símbolo de dólar
+    let nombre = document.getElementById("editNombre").value;
+    let precio = document.getElementById("editPrecio").value;
+
+    // Validar precio
+    let precioInput = document.getElementById("editPrecio");
+    if (!/^[0-9]+$/.test(precio)) {
+        document.getElementById("editPrecio-error").innerText = "Por favor, ingresa un precio válido.";
+        return;
+    } else {
+        document.getElementById("editPrecio-error").innerText = "";
+    }
+
+    // Si todos los campos son válidos, continuar con la edición
+    camisetas[index].nombre = nombre;
+    camisetas[index].precio = '$' + precio; // Agregar el símbolo de dólar
     mostrarCamisetas();
     cancelarEdicion();
 }
@@ -76,16 +108,17 @@ function mostrarCamisetas() {
 
     camisetas.forEach(function (camiseta, index) {
         let itemHTML = `
-                <div class="item">
-                    <span class="titulo-item">${camiseta.nombre}</span>
-                    <img src="${camiseta.imagen}" alt="" class="img-item">
-                    <span class="precio-item">${camiseta.precio}</span>
-                    <button class="boton-item" onclick="mostrarFormularioEdicion(${index})">Editar</button>
-                </div>
-            `;
+            <div class="item">
+                <span class="titulo-item">${camiseta.nombre}</span>
+                <img src="${camiseta.imagen}" alt="" class="img-item">
+                <span class="precio-item">${camiseta.precio}</span>
+                <button class="boton-item" onclick="mostrarFormularioEdicion(${index})">Editar</button>
+            </div>
+        `;
         contenedorItems.innerHTML += itemHTML;
     });
 }
+
 
 window.onload = function () {
     mostrarCamisetas();
