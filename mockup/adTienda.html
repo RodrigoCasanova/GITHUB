@@ -158,8 +158,8 @@
                     </div>
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="number" id="precio" name="precio" min="0" placeholder="$79.990" required>
-                    </div>
+                        <input type="number" id="precio" name="precio" min="0" inputmode="numeric" pattern="[0-9]*" placeholder="$79.990" required>
+                    </div>                    
                     <button type="button" onclick="agregarCamiseta()" class="btn-submit">Agregar Camiseta</button>
                 </form>
             </div>
