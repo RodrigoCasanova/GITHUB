@@ -64,11 +64,24 @@ function eliminarCamisetaDesdeFormulario() {
 
 function guardarEdicion() {
     let index = document.getElementById("editIndex").value;
-    camisetas[index].nombre = document.getElementById("editNombre").value;
-    camisetas[index].precio = '$' + document.getElementById("editPrecio").value; // Agregar el símbolo de dólar
+    let nuevoNombre = document.getElementById("editNombre").value;
+    let nuevoPrecio = document.getElementById("editPrecio").value;
+
+    // Verificar si el nuevo nombre y el nuevo precio están presentes
+    if (nuevoNombre.trim() === '' || nuevoPrecio.trim() === '') {
+        alert('Por favor, asegúrate de ingresar tanto el nombre como el precio de la camiseta.');
+        return; // Salir de la función si falta alguno de los campos
+    }
+
+    // Eliminar el signo negativo del precio, si lo hay
+    nuevoPrecio = nuevoPrecio.replace('-', '');
+
+    camisetas[index].nombre = nuevoNombre;
+    camisetas[index].precio = '$' + nuevoPrecio; // Agregar el símbolo de dólar
     mostrarCamisetas();
     cancelarEdicion();
 }
+
 
 function cancelarEdicion() {
     document.getElementById("formularioEditar").style.display = "none";

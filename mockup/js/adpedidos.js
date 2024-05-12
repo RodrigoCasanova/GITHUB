@@ -24,18 +24,24 @@ $(document).ready(function() {
       let products = $('#products').val();
       let address = $('#address').val();
       let status = $('#status').val();
-
+    
+      // Validar que ningún campo esté vacío
+      if (username.trim() === '' || products.trim() === '' || address.trim() === '' || status.trim() === '') {
+        alert('Por favor completa todos los campos.');
+        return;
+      }
+    
       let $row = $('tr[data-id="' + orderId + '"]');
       $row.find('td:nth-child(2)').text(username);
       $row.find('td:nth-child(3)').text(products);
       $row.find('td:nth-child(4)').text(address);
       $row.find('.status').text(status).removeClass().addClass('status').addClass(status);
-
+    
       console.log("Guardar cambios para el pedido con ID: " + orderId);
-
+    
       $('#editModal').modal('hide');
     });
-
+    
     $('.delete-btn').click(function() {
       currentOrderId = $(this).closest('tr').data('id');
       $('#deleteModal').modal('show');

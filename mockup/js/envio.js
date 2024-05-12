@@ -45,6 +45,7 @@ function mostrarAlerta(region, ciudad, direccion) {
         <button class="boton" onclick="irAPagar()">Ir a Pagar</button>
     `;
     document.body.appendChild(alerta);
+    scrollToAlerta(); // Llamar a la función de desplazamiento
 }
 function validarEmail(input) {
 var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para validar correo electrónico
@@ -92,8 +93,10 @@ document.getElementById('formularioEnvio').addEventListener('submit', function (
         alert('Por favor, completa todos los campos del formulario.');
     }
 });
-
-
 function irAPagar() {
     window.location.href = 'pago.html';
+}
+function scrollToAlerta() {
+    const alertaElement = document.getElementById("alerta");
+    alertaElement.scrollIntoView({ behavior: "smooth" });
 }

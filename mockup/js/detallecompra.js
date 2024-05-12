@@ -46,12 +46,26 @@ function deleteRow(icon) {
 
 // Función para aplicar el descuento
 function applyDiscount() {
-    let discountCode = document.getElementById('discountCode').value;
+    let discountCodeInput = document.getElementById('discountCode');
+    let applyDiscountBtn = document.getElementById('applyDiscountBtn');
+
+    // Validar si el campo de código de descuento ya está deshabilitado
+    if (discountCodeInput.disabled) {
+        alert('Ya has aplicado un código de descuento.');
+        return;
+    }
+
+    let discountCode = discountCodeInput.value;
+    
     // Validar el código de descuento
     if (discountCode === 'ELMASGRANDE') {
         let totalPrice = parseFloat(document.getElementById('totalPrice').textContent.replace('$', '').replace('.', '').replace(',', '.'));
         let discountedPrice = totalPrice * 0.7; // Aplicar descuento del 30%
         document.getElementById('totalPrice').textContent = '$' + discountedPrice.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+
+        // Deshabilitar el campo de código de descuento y el botón de aplicación
+        discountCodeInput.disabled = true;
+        applyDiscountBtn.disabled = true;
     } else {
         alert('Código de descuento inválido');
     }
